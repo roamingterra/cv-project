@@ -13,17 +13,17 @@ class GeneralInformation extends Component {
         <form>
           <div>
             <label>First Name</label>
-            <input></input>
+            <input type="text"></input>
             <label>Last Name</label>
-            <input></input>
+            <input type="text"></input>
             <label>Phone Number</label>
+            <input type="tel"></input>
+            <label type="email">Email</label>
             <input></input>
-            <label>Email</label>
-            <input></input>
-            <label>LinkedIn</label>
+            <label type="url">LinkedIn</label>
             <input></input>
             <label>GitHub</label>
-            <input></input>
+            <input type="url"></input>
           </div>
         </form>
       </div>

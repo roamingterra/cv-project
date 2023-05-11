@@ -13,12 +13,12 @@ class Skills extends Component {
         <form>
           <div>
             <label>Programming Languages</label>
-            <input></input>
+            <input type="text"></input>
             <label>Frameworks and Libraries</label>
-            <input></input>
-            <label>Tools</label>
-            <input></input>
-            <label>Languages Spoken</label>
+            <input type="text"></input>
+            <label type="text">Tools</label>
+            <input type="text"></input>
+            <label type="text">Languages Spoken</label>
             <input></input>
           </div>
         </form>

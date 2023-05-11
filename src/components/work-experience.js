@@ -13,17 +13,17 @@ class WorkExperience extends Component {
         <form>
           <div>
             <label>Job Title</label>
-            <input></input>
+            <input type="text"></input>
             <label>Company Name</label>
-            <input></input>
+            <input type="text"></input>
             <label>Company Location</label>
-            <input></input>
+            <input type="text"></input>
             <label>Start Date</label>
-            <input></input>
+            <input type="date"></input>
             <label>End Date</label>
-            <input></input>
+            <input type="date"></input>
             <label>Responsibilities</label>
-            <input></input>
+            <textarea></textarea>
           </div>
         </form>
       </div>

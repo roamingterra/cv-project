@@ -13,14 +13,14 @@ class Projects extends Component {
         <form>
           <div>
             <label>Project Title</label>
-            <input></input>
+            <input type="text"></input>
             <label>Project Location</label>
-            <input></input>
+            <input type="text"></input>
             <label>Start Date</label>
-            <input></input>
+            <input type="date"></input>
             <label>End Date</label>
-            <input></input>
-            <label>Responsibilities</label>
+            <input type="date"></input>
+            <textarea></textarea>
             <input></input>
           </div>
         </form>

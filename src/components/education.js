@@ -13,15 +13,15 @@ class Education extends Component {
         <form>
           <div>
             <label>Title of Study</label>
-            <input></input>
+            <input type="text"></input>
             <label>Name of Institution</label>
-            <input></input>
+            <input type="text"></input>
             <label>Institution Location</label>
-            <input></input>
+            <input type="text"></input>
             <label>Start Date</label>
-            <input></input>
+            <input type="date"></input>
             <label>End Date</label>
-            <input></input>
+            <input type="date"></input>
           </div>
         </form>
       </div>
