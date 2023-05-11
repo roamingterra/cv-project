@@ -10,7 +10,6 @@ class Skills extends Component {
   render() {
     return (
       <div>
-        <h2>Summary of Skills and Qualifications</h2>
         <form>
           <div>
             <label>Programming Languages</label>

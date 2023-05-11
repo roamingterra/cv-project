@@ -10,7 +10,6 @@ class Education extends Component {
   render() {
     return (
       <div>
-        <h2>Education</h2>
         <form>
           <div>
             <label>Title of Study</label>

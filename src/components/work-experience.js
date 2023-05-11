@@ -10,7 +10,6 @@ class WorkExperience extends Component {
   render() {
     return (
       <div>
-        <h2>General Information</h2>
         <form>
           <div>
             <label>Job Title</label>
