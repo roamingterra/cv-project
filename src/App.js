@@ -114,6 +114,7 @@ class App extends Component {
           <button onClick={this.removeEducation}>Delete</button>
         )}
         <button onClick={this.newEducation}>Add</button>
+        <button>Generate PDF</button>
       </div>
     );
   }
