@@ -9,6 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      skillElements: [],
       workExperienceAddedInstances: [],
       projectsAddedInstances: [],
       educationAddedInstances: [],
@@ -79,8 +80,16 @@ class App extends Component {
     }));
   };
 
+  // Method to add to skillElements state array, which will be sent as a prop to the skills component for use?
+  addSkillElement = (newSkillElement) => {
+    this.setState((prevState) => ({
+      skillElements: [...prevState.skillElements, newSkillElement],
+    }));
+  };
+
   render() {
     const {
+      skillElements,
       workExperienceAddedInstances,
       projectsAddedInstances,
       educationAddedInstances,
@@ -92,7 +101,8 @@ class App extends Component {
         <h2>General Information</h2>
         <GeneralInformation></GeneralInformation>
         <h2>Summary of Skills and Qualifications</h2>
-        <Skills></Skills>
+        {this.state.skillElements}
+        <Skills addSkillElement={this.addSkillElement}></Skills>
         <h2>Work Experience</h2>
         <WorkExperience></WorkExperience>
         {workExperienceAddedInstances}

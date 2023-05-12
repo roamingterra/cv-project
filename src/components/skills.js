@@ -22,6 +22,7 @@ class Skills extends Component {
           ],
         }),
         () => {
+          this.props.addSkillElement(event.target.value);
           event.target.value = "";
         }
       );
