@@ -20,8 +20,8 @@ class Projects extends Component {
             <input type="date"></input>
             <label>End Date</label>
             <input type="date"></input>
+            <label>Responsibilities</label>
             <textarea></textarea>
-            <input></input>
           </div>
         </form>
       </div>

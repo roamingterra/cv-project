@@ -16,7 +16,11 @@ class App extends Component {
   }
 
   newWorkExperience = () => {
-    const newInstance = <WorkExperience></WorkExperience>;
+    const newInstance = (
+      <WorkExperience
+        key={this.state.workExperienceAddedInstances.length}
+      ></WorkExperience>
+    );
     this.setState((prevState) => ({
       workExperienceAddedInstances: [
         ...prevState.workExperienceAddedInstances,
@@ -25,8 +29,18 @@ class App extends Component {
     }));
   };
 
+  removeWorkExperience = () => {
+    this.setState((prevState) => ({
+      workExperienceAddedInstances: [
+        ...prevState.workExperienceAddedInstances,
+      ].slice(0, -1),
+    }));
+  };
+
   newProject = () => {
-    const newInstance = <Projects></Projects>;
+    const newInstance = (
+      <Projects key={this.state.projectsAddedInstances.length}></Projects>
+    );
     this.setState((prevState) => ({
       projectsAddedInstances: [
         ...prevState.projectsAddedInstances,
@@ -35,13 +49,33 @@ class App extends Component {
     }));
   };
 
+  removeProject = () => {
+    this.setState((prevState) => ({
+      projectsAddedInstances: [...prevState.projectsAddedInstances].slice(
+        0,
+        -1
+      ),
+    }));
+  };
+
   newEducation = () => {
-    const newInstance = <Education></Education>;
+    const newInstance = (
+      <Education key={this.state.educationAddedInstances.length}></Education>
+    );
     this.setState((prevState) => ({
       educationAddedInstances: [
         ...prevState.educationAddedInstances,
         newInstance,
       ],
+    }));
+  };
+
+  removeEducation = () => {
+    this.setState((prevState) => ({
+      educationAddedInstances: [...prevState.educationAddedInstances].slice(
+        0,
+        -1
+      ),
     }));
   };
 
@@ -62,14 +96,23 @@ class App extends Component {
         <h2>Work Experience</h2>
         <WorkExperience></WorkExperience>
         {workExperienceAddedInstances}
+        {this.state.workExperienceAddedInstances.length !== 0 && (
+          <button onClick={this.removeWorkExperience}>Delete</button>
+        )}
         <button onClick={this.newWorkExperience}>Add</button>
         <h2>Projects</h2>
         <Projects></Projects>
         {projectsAddedInstances}
+        {this.state.projectsAddedInstances.length !== 0 && (
+          <button onClick={this.removeProject}>Delete</button>
+        )}
         <button onClick={this.newProject}>Add</button>
         <h2>Education</h2>
         <Education></Education>
         {educationAddedInstances}
+        {this.state.educationAddedInstances.length !== 0 && (
+          <button onClick={this.removeEducation}>Delete</button>
+        )}
         <button onClick={this.newEducation}>Add</button>
       </div>
     );
