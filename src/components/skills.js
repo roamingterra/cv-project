@@ -1,89 +1,58 @@
 import React, { Component } from "react";
 
 class Skills extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      programmingLanguages: [],
-      frameworksAndLibraries: [],
-      tools: [],
-      languagesSpoken: [],
-    };
-  }
-
-  addProgrammingLanguage = (event) => {
-    if (event.key === "Enter") {
-      this.setState(
-        (prevState) => ({
-          programmingLanguages: [
-            ...prevState.programmingLanguages,
-            event.target.value,
-          ],
-        }),
-        () => {
-          this.props.addSkillElement(event.target.value);
-          event.target.value = "";
-        }
-      );
-    }
-  };
-
-  addFramework = (event) => {
-    if (event.key === "Enter") {
-      this.setState(
-        (prevState) => ({
-          frameworksAndLibraries: [
-            ...prevState.frameworksAndLibraries,
-            event.target.value,
-          ],
-        }),
-        () => {
-          event.target.value = "";
-        }
-      );
-    }
-  };
-
-  addTool = (event) => {
-    if (event.key === "Enter") {
-      this.setState(
-        (prevState) => ({
-          tools: [...prevState.tools, event.target.value],
-        }),
-        () => {
-          event.target.value = "";
-        }
-      );
-    }
-  };
-
-  addLanguageSpoken = (event) => {
-    if (event.key === "Enter") {
-      this.setState(
-        (prevState) => ({
-          languagesSpoken: [...prevState.languagesSpoken, event.target.value],
-        }),
-        () => {
-          event.target.value = "";
-        }
-      );
-    }
+  handlePressEnter = async (event, addToStateMethod, addSkillElement) => {
+    try {
+      const skillInfo = await addToStateMethod(event);
+      addSkillElement(skillInfo);
+    } catch (error) {}
   };
 
   render() {
+    const {
+      addProgrammingLanguage,
+      addFramework,
+      addTool,
+      addLanguageSpoken,
+      addSkillElement,
+    } = this.props;
+
     return (
       <div>
         <form>
           <div>
             <label>Programming Languages</label>
-            <input type="text" onKeyDown={this.addProgrammingLanguage}></input>
+            <input
+              type="text"
+              onKeyDown={(event) =>
+                this.handlePressEnter(
+                  event,
+                  addProgrammingLanguage,
+                  addSkillElement
+                )
+              }
+            ></input>
             <label>Frameworks and Libraries</label>
-            <input type="text" onKeyDown={this.addFramework}></input>
+            <input
+              type="text"
+              onKeyDown={(event) =>
+                this.handlePressEnter(event, addFramework, addSkillElement)
+              }
+            ></input>
             <label>Tools</label>
-            <input type="text" onKeyDown={this.addTool}></input>
+            <input
+              type="text"
+              onKeyDown={(event) =>
+                this.handlePressEnter(event, addTool, addSkillElement)
+              }
+            ></input>
             <label>Languages Spoken</label>
-            <input type="text" onKeyDown={this.addLanguageSpoken}></input>
+            <input
+              type="text"
+              onKeyDown={(event) =>
+                this.handlePressEnter(event, addLanguageSpoken, addSkillElement)
+              }
+            ></input>
           </div>
         </form>
       </div>

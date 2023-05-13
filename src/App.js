@@ -4,6 +4,7 @@ import Skills from "./components/skills";
 import WorkExperience from "./components/work-experience";
 import Projects from "./components/projects";
 import Education from "./components/education";
+import uniqid from "uniqid";
 
 class App extends Component {
   constructor() {
@@ -13,6 +14,11 @@ class App extends Component {
       workExperienceAddedInstances: [],
       projectsAddedInstances: [],
       educationAddedInstances: [],
+
+      programmingLanguages: [],
+      frameworksAndLibraries: [],
+      tools: [],
+      languagesSpoken: [],
     };
   }
 
@@ -80,11 +86,152 @@ class App extends Component {
     }));
   };
 
-  // Method to add to skillElements state array, which will be sent as a prop to the skills component for use?
-  addSkillElement = (newSkillElement) => {
+  //Skill methods
+  addSkillElement = (skillInfo) => {
+    const newSkill = skillInfo[0];
+    const skillType = skillInfo[1];
+    const key = skillType + "-" + uniqid();
+    const newSkillElement = (
+      <div key={key}>
+        <div>{newSkill}</div>
+        <div
+          onClick={() => {
+            this.removeSkill(key);
+          }}
+        >
+          x
+        </div>
+      </div>
+    );
     this.setState((prevState) => ({
       skillElements: [...prevState.skillElements, newSkillElement],
     }));
+  };
+
+  removeSkill = (key) => {
+    const regex = /^(.+?)-/;
+    const skillType = key.match(regex)[1];
+    let skillToBeRemoved;
+
+    // Remove skill element
+    this.setState((prevState) => ({
+      skillElements: prevState.skillElements.filter((element) => {
+        if (element.key !== key) return true;
+        else {
+          skillToBeRemoved = element.props.children[0].props.children;
+          return false;
+        }
+      }),
+    }));
+
+    // Remove specific skill from state
+    if (skillType === "programmingLanguage") {
+      this.setState((prevState) => ({
+        programmingLanguages: prevState.programmingLanguages.filter(
+          (element) => element !== skillToBeRemoved
+        ),
+      }));
+    } else if (skillType === "framework") {
+      this.setState((prevState) => ({
+        frameworksAndLibraries: prevState.frameworksAndLibraries.filter(
+          (element) => element !== skillToBeRemoved
+        ),
+      }));
+    } else if (skillType === "tool") {
+      this.setState((prevState) => ({
+        tools: prevState.tools.filter(
+          (element) => element !== skillToBeRemoved
+        ),
+      }));
+    } else if (skillType === "languageSpoken") {
+      this.setState((prevState) => ({
+        languagesSpoken: prevState.languagesSpoken.filter(
+          (element) => element !== skillToBeRemoved
+        ),
+      }));
+    }
+  };
+
+  addProgrammingLanguage = async (event) => {
+    const skillType = "programmingLanguage";
+    if (event.key === "Enter") {
+      return await new Promise((resolve) => {
+        this.setState(
+          (prevState) => ({
+            programmingLanguages: [
+              ...prevState.programmingLanguages,
+              event.target.value,
+            ],
+          }),
+          () => {
+            const newSkill = event.target.value;
+            event.target.value = "";
+            const skillInfo = [newSkill, skillType];
+            resolve(skillInfo);
+          }
+        );
+      });
+    }
+  };
+
+  addFramework = async (event) => {
+    const skillType = "framework";
+    if (event.key === "Enter") {
+      return await new Promise((resolve) => {
+        this.setState(
+          (prevState) => ({
+            frameworksAndLibraries: [
+              ...prevState.frameworksAndLibraries,
+              event.target.value,
+            ],
+          }),
+          () => {
+            const newSkill = event.target.value;
+            event.target.value = "";
+            const skillInfo = [newSkill, skillType];
+            resolve(skillInfo);
+          }
+        );
+      });
+    }
+  };
+
+  addTool = async (event) => {
+    const skillType = "tool";
+    if (event.key === "Enter") {
+      return await new Promise((resolve) => {
+        this.setState(
+          (prevState) => ({
+            tools: [...prevState.tools, event.target.value],
+          }),
+          () => {
+            const newSkill = event.target.value;
+            event.target.value = "";
+            const skillInfo = [newSkill, skillType];
+            resolve(skillInfo);
+          }
+        );
+      });
+    }
+  };
+
+  addLanguageSpoken = async (event) => {
+    const skillType = "languageSpoken";
+    if (event.key === "Enter") {
+      return await new Promise((resolve) => {
+        this.setState(
+          (prevState) => ({
+            languagesSpoken: [...prevState.languagesSpoken, event.target.value],
+          }),
+          () => {
+            const newSkill = event.target.value;
+            event.target.value = "";
+            const skillInfo = [newSkill, skillType];
+            resolve(skillInfo);
+          }
+        );
+      });
+    }
   };
 
   render() {
@@ -101,8 +248,14 @@ class App extends Component {
         <h2>General Information</h2>
         <GeneralInformation></GeneralInformation>
         <h2>Summary of Skills and Qualifications</h2>
-        {this.state.skillElements}
-        <Skills addSkillElement={this.addSkillElement}></Skills>
+        {skillElements}
+        <Skills
+          addProgrammingLanguage={this.addProgrammingLanguage}
+          addFramework={this.addFramework}
+          addTool={this.addTool}
+          addLanguageSpoken={this.addLanguageSpoken}
+          addSkillElement={this.addSkillElement}
+        ></Skills>
         <h2>Work Experience</h2>
         <WorkExperience></WorkExperience>
         {workExperienceAddedInstances}
