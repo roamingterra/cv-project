@@ -5,6 +5,7 @@ import WorkExperience from "./components/work-experience";
 import Projects from "./components/projects";
 import Education from "./components/education";
 import uniqid from "uniqid";
+import "./styles/style.css";
 
 class App extends Component {
   constructor() {
@@ -92,14 +93,14 @@ class App extends Component {
     const skillType = skillInfo[1];
     const key = skillType + "-" + uniqid();
     const newSkillElement = (
-      <div key={key}>
+      <div className="skill-element" key={key}>
         <div>{newSkill}</div>
         <div
           onClick={() => {
             this.removeSkill(key);
           }}
         >
-          x
+          ✖
         </div>
       </div>
     );
@@ -244,40 +245,78 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>CV Generator</h1>
-        <h2>General Information</h2>
-        <GeneralInformation></GeneralInformation>
-        <h2>Summary of Skills and Qualifications</h2>
-        {skillElements}
-        <Skills
-          addProgrammingLanguage={this.addProgrammingLanguage}
-          addFramework={this.addFramework}
-          addTool={this.addTool}
-          addLanguageSpoken={this.addLanguageSpoken}
-          addSkillElement={this.addSkillElement}
-        ></Skills>
-        <h2>Work Experience</h2>
-        <WorkExperience></WorkExperience>
-        {workExperienceAddedInstances}
-        {this.state.workExperienceAddedInstances.length !== 0 && (
-          <button onClick={this.removeWorkExperience}>Delete</button>
-        )}
-        <button onClick={this.newWorkExperience}>Add</button>
-        <h2>Projects</h2>
-        <Projects></Projects>
-        {projectsAddedInstances}
-        {this.state.projectsAddedInstances.length !== 0 && (
-          <button onClick={this.removeProject}>Delete</button>
-        )}
-        <button onClick={this.newProject}>Add</button>
-        <h2>Education</h2>
-        <Education></Education>
-        {educationAddedInstances}
-        {this.state.educationAddedInstances.length !== 0 && (
-          <button onClick={this.removeEducation}>Delete</button>
-        )}
-        <button onClick={this.newEducation}>Add</button>
-        <button>Generate PDF</button>
+        <div className="header">
+          <h1>CV Generator</h1>
+        </div>
+        <div className="content">
+          <div className="component">
+            <h2>General Information</h2>
+            <GeneralInformation></GeneralInformation>
+          </div>
+
+          <div className="component">
+            <h2 className="skills-header">Skills and Qualifications</h2>
+            <div className="skill-tags">{skillElements}</div>
+            <Skills
+              addProgrammingLanguage={this.addProgrammingLanguage}
+              addFramework={this.addFramework}
+              addTool={this.addTool}
+              addLanguageSpoken={this.addLanguageSpoken}
+              addSkillElement={this.addSkillElement}
+            ></Skills>
+          </div>
+
+          <div className="component">
+            <h2>Work Experience</h2>
+            <WorkExperience></WorkExperience>
+            {workExperienceAddedInstances}
+            {this.state.workExperienceAddedInstances.length !== 0 && (
+              <button className="delete" onClick={this.removeWorkExperience}>
+                Delete
+              </button>
+            )}
+            <button className="add" onClick={this.newWorkExperience}>
+              Add
+            </button>
+          </div>
+
+          <div className="component">
+            <h2>Projects</h2>
+            <Projects></Projects>
+            {projectsAddedInstances}
+            {this.state.projectsAddedInstances.length !== 0 && (
+              <button className="delete" onClick={this.removeProject}>
+                Delete
+              </button>
+            )}
+            <button className="add" onClick={this.newProject}>
+              Add
+            </button>
+          </div>
+
+          <div className="component">
+            <h2>Education</h2>
+            <Education></Education>
+            {educationAddedInstances}
+            {this.state.educationAddedInstances.length !== 0 && (
+              <button className="delete" onClick={this.removeEducation}>
+                Delete
+              </button>
+            )}
+            <button className="add" onClick={this.newEducation}>
+              Add
+            </button>
+          </div>
+          <button className="generate-pdf">Generate PDF</button>
+        </div>
+
+        <div className="footer">
+          <div>Website created by Daniel Ballerini</div>
+          <div>
+            with help from the
+            <a href="https://www.theodinproject.com/"> © Odin Project</a>
+          </div>
+        </div>
       </div>
     );
   }

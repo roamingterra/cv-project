@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import generalInfoCss from "./../styles/generalInformation.module.css";
 
 class GeneralInformation extends Component {
   constructor() {
@@ -52,21 +53,45 @@ class GeneralInformation extends Component {
 
   render() {
     return (
-      <div>
+      <div className={generalInfoCss.container}>
         <form>
-          <div>
-            <label>First Name</label>
-            <input type="text" onChange={this.updateFirstName}></input>
-            <label>Last Name</label>
-            <input type="text" onChange={this.updateLastName}></input>
-            <label>Phone Number</label>
-            <input type="tel" onChange={this.updatePhoneNumber}></input>
-            <label>Email</label>
-            <input type="email" onChange={this.updateEmail}></input>
-            <label>LinkedIn</label>
-            <input type="url" onChange={this.updateLinkedIn}></input>
-            <label>GitHub</label>
-            <input type="url" onChange={this.updateGitHub}></input>
+          <div className={generalInfoCss.form}>
+            <input
+              type="text"
+              onChange={this.updateFirstName}
+              placeholder="First Name"
+              className={generalInfoCss.input}
+            ></input>
+            <input
+              type="text"
+              onChange={this.updateLastName}
+              placeholder="Last Name"
+              className={generalInfoCss.input}
+            ></input>
+            <input
+              type="tel"
+              onChange={this.updatePhoneNumber}
+              placeholder="Phone Number"
+              className={generalInfoCss.input}
+            ></input>
+            <input
+              type="email"
+              onChange={this.updateEmail}
+              placeholder="Email"
+              className={generalInfoCss.input}
+            ></input>
+            <input
+              type="url"
+              onChange={this.updateLinkedIn}
+              placeholder="LinkedIn"
+              className={generalInfoCss.input}
+            ></input>
+            <input
+              type="url"
+              onChange={this.updateGitHub}
+              placeholder="GitHub"
+              className={generalInfoCss.input}
+            ></input>
           </div>
         </form>
       </div>

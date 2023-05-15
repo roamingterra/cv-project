@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import skillsCss from "./../styles/skills.module.css";
 
 class Skills extends Component {
   handlePressEnter = async (event, addToStateMethod, addSkillElement) => {
@@ -18,10 +19,9 @@ class Skills extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div className={skillsCss.container}>
         <form>
-          <div>
-            <label>Programming Languages</label>
+          <div className={skillsCss.form}>
             <input
               type="text"
               onKeyDown={(event) =>
@@ -31,27 +31,32 @@ class Skills extends Component {
                   addSkillElement
                 )
               }
+              placeholder="Programming Languages"
+              className={skillsCss.input}
             ></input>
-            <label>Frameworks and Libraries</label>
             <input
               type="text"
               onKeyDown={(event) =>
                 this.handlePressEnter(event, addFramework, addSkillElement)
               }
+              placeholder="Frameworks and Libraries"
+              className={skillsCss.input}
             ></input>
-            <label>Tools</label>
             <input
               type="text"
               onKeyDown={(event) =>
                 this.handlePressEnter(event, addTool, addSkillElement)
               }
+              placeholder="Tools"
+              className={skillsCss.input}
             ></input>
-            <label>Languages Spoken</label>
             <input
               type="text"
               onKeyDown={(event) =>
                 this.handlePressEnter(event, addLanguageSpoken, addSkillElement)
               }
+              placeholder="Languages Spoken"
+              className={skillsCss.input}
             ></input>
           </div>
         </form>

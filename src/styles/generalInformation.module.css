@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  padding: 40px 20px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  column-gap: 10px;
+  row-gap: 20px;
+  min-width: 200px;
+  max-width: 100%;
+}
+
+.input {
+  height: 30px;
+}
+
+@media screen and (max-width: 800px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+}

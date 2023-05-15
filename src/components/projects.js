@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import projectsCss from "./../styles/projects.module.css";
 
 class Projects extends Component {
   constructor() {
@@ -45,19 +46,38 @@ class Projects extends Component {
 
   render() {
     return (
-      <div>
+      <div className={projectsCss.container}>
         <form>
-          <div>
-            <label>Project Title</label>
-            <input type="text" onChange={this.updateProjectTitle}></input>
-            <label>Project Location</label>
-            <input type="text" onChange={this.updateProjectLocation}></input>
-            <label>Start Date</label>
-            <input type="date" onChange={this.updateStartDate}></input>
-            <label>End Date</label>
-            <input type="date" onChange={this.updateEndDate}></input>
-            <label>Responsibilities</label>
-            <textarea onChange={this.updateResponsibilities}></textarea>
+          <div className={projectsCss.form}>
+            <input
+              type="text"
+              onChange={this.updateProjectTitle}
+              placeholder="Project Title"
+              className={projectsCss.input}
+            ></input>
+            <input
+              type="text"
+              onChange={this.updateProjectLocation}
+              placeholder="Project Location"
+              className={projectsCss.input}
+            ></input>
+            <input
+              type="date"
+              onChange={this.updateStartDate}
+              placeholder="Start Date"
+              className={projectsCss.input}
+            ></input>
+            <input
+              type="date"
+              onChange={this.updateEndDate}
+              placeholder="End Date"
+              className={projectsCss.input}
+            ></input>
+            <textarea
+              onChange={this.updateResponsibilities}
+              placeholder="Responsibilities"
+              className={projectsCss.input}
+            ></textarea>
           </div>
         </form>
       </div>

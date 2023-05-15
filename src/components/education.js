@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import educationCss from "./../styles/education.module.css";
 
 class Education extends Component {
   constructor() {
@@ -45,22 +46,39 @@ class Education extends Component {
 
   render() {
     return (
-      <div>
+      <div className={educationCss.container}>
         <form>
-          <div>
-            <label>Title of Study</label>
-            <input type="text" onChange={this.updateTitleOfStudy}></input>
-            <label>Name of Institution</label>
-            <input type="text" onChange={this.updateNameOfInstitution}></input>
-            <label>Institution Location</label>
+          <div className={educationCss.form}>
+            <input
+              type="text"
+              onChange={this.updateTitleOfStudy}
+              placeholder="Title of Study"
+              className={educationCss.input}
+            ></input>
+            <input
+              type="text"
+              onChange={this.updateNameOfInstitution}
+              placeholder="Name of Institution"
+              className={educationCss.input}
+            ></input>
             <input
               type="text"
               onChange={this.updateInstitutionLocation}
+              placeholder="Institution Location"
+              className={educationCss.input}
             ></input>
-            <label>Start Date</label>
-            <input type="date" onChange={this.updateStartDate}></input>
-            <label>End Date</label>
-            <input type="date" onChange={this.updateEndDate}></input>
+            <input
+              type="date"
+              onChange={this.updateStartDate}
+              placeholder="Start Date"
+              className={educationCss.input}
+            ></input>
+            <input
+              type="date"
+              onChange={this.updateEndDate}
+              placeholder="End Date"
+              className={educationCss.input}
+            ></input>
           </div>
         </form>
       </div>
