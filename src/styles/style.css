@@ -8,10 +8,23 @@
   src: url(../fonts/Roboto-Bold.ttf);
 }
 
+:root {
+  --header-and-buttons-color: #6daffe;
+  --header-footer-buttons-font-color: white;
+  --footer-and-skill-tags-background-color: #b9732f;
+  --button-hover-color: #b2cef0;
+  --skills-directives-color: rgb(180, 180, 180);
+}
+
+html,
+body {
+  background-color: var(--header-footer-buttons-font-color);
+}
+
 .App {
   display: flex;
   flex-direction: column;
-  margin: 50px 50px 15px 50px;
+  margin: 25px;
   min-height: 100vh;
   font-family: "Roboto-Regular";
 }
@@ -20,6 +33,7 @@
   display: flex;
   justify-content: center;
   text-align: center;
+  background-color: var(--header-and-buttons-color);
 }
 
 .content {
@@ -47,18 +61,18 @@
 }
 
 .skills-header > h2 {
-  /* margin-top: 15px; */
   margin-bottom: 5px;
 }
 
 .skills-header > h4 {
   margin-top: 0;
   margin-bottom: 10px;
-  color: lightgray;
+  color: var(--skills-directives-color);
 }
 
 .skill-tags {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
   min-height: 35px;
@@ -68,8 +82,8 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  color: white;
-  background-color: black;
+  color: var(--header-footer-buttons-font-color);
+  background-color: var(--footer-and-skill-tags-background-color);
   border-radius: 10px;
   padding: 5px 10px;
 }
@@ -80,22 +94,31 @@
 
 .skill-element > div:nth-child(2) {
   cursor: pointer;
-  color: red;
+  color: var(--header-footer-buttons-font-color);
 }
 
 .footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: var(--footer-and-skill-tags-background-color);
+  color: var(--header-footer-buttons-font-color);
+}
+
+a {
+  color: var(--header-footer-buttons-font-color);
 }
 
 h1 {
   font-family: "Roboto-Bold";
   font-size: 3rem;
+  color: var(--header-footer-buttons-font-color);
 }
 
 h2 {
+  font-family: "Roboto-Bold";
   font-size: 2rem;
 }
 
@@ -103,18 +126,19 @@ button {
   width: 200px;
   height: 30px;
   border: 0;
-  border-radius: 0;
-  background-color: rgb(230, 230, 230);
+  border-radius: 5px;
   margin: 20px 20px 0 20px;
   font-size: 1rem;
+  color: var(--header-footer-buttons-font-color);
+  background-color: var(--header-and-buttons-color);
 }
 
 button:hover {
-  background-color: darkgrey;
+  background-color: var(--button-hover-color);
 }
 
 button:active {
-  background-color: rgb(230, 230, 230);
+  background-color: var(--header-and-buttons-color);
 }
 
 .add {

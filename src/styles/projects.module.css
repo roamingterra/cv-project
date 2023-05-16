@@ -3,6 +3,10 @@
   src: url(../fonts/Roboto-Regular.ttf);
 }
 
+:root {
+  --form-input-border-color: rgb(180, 180, 180);
+}
+
 .container {
   width: 100%;
   padding: 40px 20px;
@@ -20,6 +24,9 @@
 .input {
   height: 30px;
   font-size: 1.15rem;
+  border: solid;
+  border-color: var(--form-input-border-color);
+  border-radius: 5px;
 }
 
 .responsibilities {
