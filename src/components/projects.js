@@ -62,13 +62,13 @@ class Projects extends Component {
               className={projectsCss.input}
             ></input>
             <input
-              type="date"
+              type="text"
               onChange={this.updateStartDate}
               placeholder="Start Date"
               className={projectsCss.input}
             ></input>
             <input
-              type="date"
+              type="text"
               onChange={this.updateEndDate}
               placeholder="End Date"
               className={projectsCss.input}
@@ -76,7 +76,7 @@ class Projects extends Component {
             <textarea
               onChange={this.updateResponsibilities}
               placeholder="Responsibilities"
-              className={projectsCss.input}
+              className={`${projectsCss.input} ${projectsCss.responsibilities}`}
             ></textarea>
           </div>
         </form>

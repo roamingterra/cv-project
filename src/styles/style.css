@@ -35,7 +35,20 @@
 }
 
 .skills-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skills-header > h2 {
+  /* margin-top: 15px; */
   margin-bottom: 5px;
+}
+
+.skills-header > h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: lightgray;
 }
 
 .skill-tags {
@@ -94,6 +107,10 @@ button:hover {
 
 button:active {
   background-color: rgb(230, 230, 230);
+}
+
+.add {
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 800px) {

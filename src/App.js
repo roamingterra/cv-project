@@ -255,7 +255,10 @@ class App extends Component {
           </div>
 
           <div className="component">
-            <h2 className="skills-header">Skills and Qualifications</h2>
+            <div className="skills-header">
+              <h2>Skills and Qualifications</h2>
+              <h4>*type in a skill and press ENTER to add a skill tag</h4>
+            </div>
             <div className="skill-tags">{skillElements}</div>
             <Skills
               addProgrammingLanguage={this.addProgrammingLanguage}

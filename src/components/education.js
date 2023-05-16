@@ -53,7 +53,7 @@ class Education extends Component {
               type="text"
               onChange={this.updateTitleOfStudy}
               placeholder="Title of Study"
-              className={educationCss.input}
+              className={`${educationCss.input} ${educationCss.title}`}
             ></input>
             <input
               type="text"
@@ -68,13 +68,13 @@ class Education extends Component {
               className={educationCss.input}
             ></input>
             <input
-              type="date"
+              type="text"
               onChange={this.updateStartDate}
               placeholder="Start Date"
               className={educationCss.input}
             ></input>
             <input
-              type="date"
+              type="text"
               onChange={this.updateEndDate}
               placeholder="End Date"
               className={educationCss.input}
