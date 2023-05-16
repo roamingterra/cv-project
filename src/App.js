@@ -246,7 +246,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="header">
-          <h1>CV Generator</h1>
+          <h1>WEB DEV CV GENERATOR</h1>
         </div>
         <div className="content">
           <div className="component">

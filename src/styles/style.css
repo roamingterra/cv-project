@@ -3,6 +3,11 @@
   src: url(../fonts/Roboto-Regular.ttf);
 }
 
+@font-face {
+  font-family: Roboto-Bold;
+  src: url(../fonts/Roboto-Bold.ttf);
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -14,6 +19,7 @@
 .header {
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .content {
@@ -85,11 +91,12 @@
 }
 
 h1 {
+  font-family: "Roboto-Bold";
   font-size: 3rem;
 }
 
 h2 {
-  font-size: 1.75rem;
+  font-size: 2rem;
 }
 
 button {
@@ -99,6 +106,7 @@ button {
   border-radius: 0;
   background-color: rgb(230, 230, 230);
   margin: 20px 20px 0 20px;
+  font-size: 1rem;
 }
 
 button:hover {

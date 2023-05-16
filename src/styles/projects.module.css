@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Roboto-Regular;
+  src: url(../fonts/Roboto-Regular.ttf);
+}
+
 .container {
   width: 100%;
   padding: 40px 20px;
@@ -14,12 +19,14 @@
 
 .input {
   height: 30px;
+  font-size: 1.15rem;
 }
 
 .responsibilities {
   grid-column: 1/3;
   resize: none;
   height: 100px;
+  font-family: "Roboto-Regular";
 }
 
 @media screen and (max-width: 800px) {
