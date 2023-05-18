@@ -5,21 +5,29 @@ import WorkExperience from "./components/work-experience";
 import Projects from "./components/projects";
 import Education from "./components/education";
 import uniqid from "uniqid";
+// import jsPDF from "jspdf";
 import "./styles/style.css";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      //Added components
       skillElements: [],
       workExperienceAddedInstances: [],
       projectsAddedInstances: [],
       educationAddedInstances: [],
 
+      //CV data
       programmingLanguages: [],
       frameworksAndLibraries: [],
       tools: [],
       languagesSpoken: [],
+
+      generalInformation: [],
+      workExperiences: [],
+      projects: [],
+      education: [],
     };
   }
 
@@ -27,6 +35,9 @@ class App extends Component {
     const newInstance = (
       <WorkExperience
         key={this.state.workExperienceAddedInstances.length}
+        index={this.state.workExperiences.length}
+        dataType="workExperiences"
+        onDataChange={this.receiveStateData}
       ></WorkExperience>
     );
     this.setState((prevState) => ({
@@ -42,12 +53,18 @@ class App extends Component {
       workExperienceAddedInstances: [
         ...prevState.workExperienceAddedInstances,
       ].slice(0, -1),
+      workExperiences: [...prevState.workExperiences].slice(0, -1),
     }));
   };
 
   newProject = () => {
     const newInstance = (
-      <Projects key={this.state.projectsAddedInstances.length}></Projects>
+      <Projects
+        key={this.state.projectsAddedInstances.length}
+        index={this.state.projects.length}
+        dataType="projects"
+        onDataChange={this.receiveStateData}
+      ></Projects>
     );
     this.setState((prevState) => ({
       projectsAddedInstances: [
@@ -63,12 +80,18 @@ class App extends Component {
         0,
         -1
       ),
+      projects: [...prevState.projects].slice(0, -1),
     }));
   };
 
   newEducation = () => {
     const newInstance = (
-      <Education key={this.state.educationAddedInstances.length}></Education>
+      <Education
+        key={this.state.educationAddedInstances.length}
+        index={this.state.education.length}
+        dataType="education"
+        onDataChange={this.receiveStateData}
+      ></Education>
     );
     this.setState((prevState) => ({
       educationAddedInstances: [
@@ -84,6 +107,7 @@ class App extends Component {
         0,
         -1
       ),
+      education: [...prevState.education].slice(0, -1),
     }));
   };
 
@@ -235,14 +259,37 @@ class App extends Component {
     }
   };
 
-  render() {
-    const {
-      skillElements,
-      workExperienceAddedInstances,
-      projectsAddedInstances,
-      educationAddedInstances,
-    } = this.state;
+  receiveStateData = (newData, dataType, index) => {
+    if (dataType === "generalInformation") {
+      this.setState({
+        [dataType]: newData,
+      });
+    }
 
+    if (
+      dataType === "workExperiences" ||
+      dataType === "projects" ||
+      dataType === "education"
+    ) {
+      this.setState((prevState) => {
+        const updatedData = [...prevState[dataType]];
+        updatedData[index] = newData;
+        return { [dataType]: updatedData };
+      });
+    }
+  };
+
+  generatePdf = () => {
+    console.log("Generate PDF");
+    console.log(this.state);
+    // Create a new jsPDF instance
+    // const doc = new jsPDF();
+
+    // Access the data from your component's state and use it to construct the PDF content
+    // const { name, age, experience } = this.state; // Replace with your actual state properties
+  };
+
+  render() {
     return (
       <div className="App">
         <div className="header">
@@ -251,7 +298,10 @@ class App extends Component {
         <div className="content">
           <div className="component">
             <h2>General Information</h2>
-            <GeneralInformation></GeneralInformation>
+            <GeneralInformation
+              dataType="generalInformation"
+              onDataChange={this.receiveStateData}
+            ></GeneralInformation>
           </div>
 
           <div className="component">
@@ -259,7 +309,7 @@ class App extends Component {
               <h2>Skills and Qualifications</h2>
               <h4>*type in a skill and press ENTER to add a skill tag</h4>
             </div>
-            <div className="skill-tags">{skillElements}</div>
+            <div className="skill-tags">{this.state.skillElements}</div>
             <Skills
               addProgrammingLanguage={this.addProgrammingLanguage}
               addFramework={this.addFramework}
@@ -271,8 +321,12 @@ class App extends Component {
 
           <div className="component">
             <h2>Work Experience</h2>
-            <WorkExperience></WorkExperience>
-            {workExperienceAddedInstances}
+            <WorkExperience
+              index={this.state.workExperiences.length}
+              dataType="workExperiences"
+              onDataChange={this.receiveStateData}
+            ></WorkExperience>
+            {this.state.workExperienceAddedInstances}
             {this.state.workExperienceAddedInstances.length !== 0 && (
               <button className="delete" onClick={this.removeWorkExperience}>
                 Delete
@@ -285,8 +339,12 @@ class App extends Component {
 
           <div className="component">
             <h2>Projects</h2>
-            <Projects></Projects>
-            {projectsAddedInstances}
+            <Projects
+              index={this.state.projects.length}
+              dataType="projects"
+              onDataChange={this.receiveStateData}
+            ></Projects>
+            {this.state.projectsAddedInstances}
             {this.state.projectsAddedInstances.length !== 0 && (
               <button className="delete" onClick={this.removeProject}>
                 Delete
@@ -299,8 +357,12 @@ class App extends Component {
 
           <div className="component">
             <h2>Education</h2>
-            <Education></Education>
-            {educationAddedInstances}
+            <Education
+              index={this.state.education.length}
+              dataType="education"
+              onDataChange={this.receiveStateData}
+            ></Education>
+            {this.state.educationAddedInstances}
             {this.state.educationAddedInstances.length !== 0 && (
               <button className="delete" onClick={this.removeEducation}>
                 Delete
@@ -310,7 +372,9 @@ class App extends Component {
               Add
             </button>
           </div>
-          <button className="generate-pdf">Generate PDF</button>
+          <button className="generate-pdf" onClick={this.generatePdf}>
+            Generate PDF
+          </button>
         </div>
 
         <div className="footer">

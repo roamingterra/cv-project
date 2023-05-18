@@ -5,6 +5,8 @@ class GeneralInformation extends Component {
   constructor() {
     super();
 
+    this.dataType = "";
+
     this.state = {
       firstName: "",
       lastName: "",
@@ -15,40 +17,70 @@ class GeneralInformation extends Component {
     };
   }
 
+  componentDidMount() {
+    const { dataType } = this.props;
+    // Now you can use the dataType prop safely
+    this.dataType = dataType;
+  }
+
   updateFirstName = (event) => {
-    this.setState({
-      firstName: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        firstName: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType)
+    );
   };
 
   updateLastName = (event) => {
-    this.setState({
-      lastName: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        lastName: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType)
+    );
   };
 
   updatePhoneNumber = (event) => {
-    this.setState({
-      phoneNumber: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        phoneNumber: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType)
+    );
   };
 
   updateEmail = (event) => {
-    this.setState({
-      email: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        email: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType)
+    );
   };
 
   updateLinkedIn = (event) => {
-    this.setState({
-      linkedIn: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        linkedIn: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType)
+    );
   };
 
   updateGitHub = (event) => {
-    this.setState({
-      gitHub: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        gitHub: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType)
+    );
   };
 
   render() {

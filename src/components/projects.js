@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import projectsCss from "./../styles/projects.module.css";
 
 class Projects extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.dataType = "";
+    this.index = 0;
 
     this.state = {
       projectTitle: "",
@@ -14,34 +17,61 @@ class Projects extends Component {
     };
   }
 
+  componentDidMount() {
+    const { index, dataType } = this.props;
+    // Now you can use the index prop safely
+    this.index = index;
+    this.dataType = dataType;
+  }
+
   updateProjectTitle = (event) => {
-    this.setState({
-      projectTitle: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        projectTitle: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
   };
 
   updateProjectLocation = (event) => {
-    this.setState({
-      projectLocation: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        projectLocation: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
   };
 
   updateStartDate = (event) => {
-    this.setState({
-      startDate: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        startDate: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
   };
 
   updateEndDate = (event) => {
-    this.setState({
-      endDate: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        endDate: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
   };
 
   updateResponsibilities = (event) => {
-    this.setState({
-      responsibilities: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        responsibilities: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
   };
 
   render() {

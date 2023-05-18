@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import workExperienceCss from "./../styles/workExperience.module.css";
 
 class WorkExperience extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.dataType = "";
+    this.index = 0;
 
     this.state = {
       jobTitle: "",
@@ -14,6 +17,73 @@ class WorkExperience extends Component {
       responsibilities: "",
     };
   }
+
+  componentDidMount() {
+    const { index, dataType } = this.props;
+    // Now you can use the index prop safely
+    this.index = index;
+    this.dataType = dataType;
+  }
+
+  updateJobTitle = (event) => {
+    const { value } = event.target;
+    this.setState(
+      {
+        jobTitle: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
+  };
+
+  updateCompanyName = (event) => {
+    const { value } = event.target;
+    this.setState(
+      {
+        companyName: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
+  };
+
+  updateCompanyLocation = (event) => {
+    const { value } = event.target;
+    this.setState(
+      {
+        companyLocation: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
+  };
+
+  updateStartDate = (event) => {
+    const { value } = event.target;
+    this.setState(
+      {
+        startDate: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
+  };
+
+  updateEndDate = (event) => {
+    const { value } = event.target;
+    this.setState(
+      {
+        endDate: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
+  };
+
+  updateResponsibilities = (event) => {
+    const { value } = event.target;
+    this.setState(
+      {
+        responsibilities: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
+  };
 
   render() {
     return (

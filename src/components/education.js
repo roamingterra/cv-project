@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import educationCss from "./../styles/education.module.css";
 
 class Education extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.dataType = "";
+    this.index = 0;
 
     this.state = {
       titleOfStudy: "",
@@ -14,34 +17,61 @@ class Education extends Component {
     };
   }
 
+  componentDidMount() {
+    const { index, dataType } = this.props;
+    // Now you can use the index prop safely
+    this.index = index;
+    this.dataType = dataType;
+  }
+
   updateTitleOfStudy = (event) => {
-    this.setState({
-      titleOfStudy: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        titleOfStudy: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
   };
 
   updateNameOfInstitution = (event) => {
-    this.setState({
-      nameOfInstitution: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        nameOfInstitution: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
   };
 
   updateInstitutionLocation = (event) => {
-    this.setState({
-      institutionLocation: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        institutionLocation: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
   };
 
   updateStartDate = (event) => {
-    this.setState({
-      startDate: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        startDate: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
   };
 
   updateEndDate = (event) => {
-    this.setState({
-      endDate: event.target.value,
-    });
+    const { value } = event.target;
+    this.setState(
+      {
+        endDate: value,
+      },
+      () => this.props.onDataChange(this.state, this.dataType, this.index)
+    );
   };
 
   render() {
