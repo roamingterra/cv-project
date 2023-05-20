@@ -4,8 +4,9 @@ import Skills from "./components/skills";
 import WorkExperience from "./components/work-experience";
 import Projects from "./components/projects";
 import Education from "./components/education";
+import PDFFile from "./components/PDFDocument";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import uniqid from "uniqid";
-// import jsPDF from "jspdf";
 import "./styles/style.css";
 
 class App extends Component {
@@ -28,6 +29,9 @@ class App extends Component {
       workExperiences: [],
       projects: [],
       education: [],
+
+      //Generate PDF
+      generatePDF: false,
     };
   }
 
@@ -279,17 +283,39 @@ class App extends Component {
     }
   };
 
-  generatePdf = () => {
-    console.log("Generate PDF");
-    console.log(this.state);
-    // Create a new jsPDF instance
-    // const doc = new jsPDF();
+  // generatePdf = () => {
+  //   this.setState({
+  //     generatePDF: true,
+  //   });
+  //   console.log("Generate PDF");
+  //   console.log(this.state);
+  //   // Create a new jsPDF instance
 
-    // Access the data from your component's state and use it to construct the PDF content
-    // const { name, age, experience } = this.state; // Replace with your actual state properties
-  };
+  //   // Access the data from your component's state and use it to construct the PDF content
+  //   const {
+  //     generalInformation,
+  //     programmingLanguages,
+  //     frameworksAndLibraries,
+  //     tools,
+  //     languagesSpoken,
+  //     workExperiences,
+  //     projects,
+  //     education,
+  //   } = this.state; // Replace with your actual state properties
+  //   // doc.text("Hello World!", 10, 10);
+  // };
 
   render() {
+    const {
+      generalInformation,
+      programmingLanguages,
+      frameworksAndLibraries,
+      tools,
+      languagesSpoken,
+      workExperiences,
+      projects,
+      education,
+    } = this.state;
     return (
       <div className="App">
         <div className="header">
@@ -372,9 +398,29 @@ class App extends Component {
               Add
             </button>
           </div>
-          <button className="generate-pdf" onClick={this.generatePdf}>
-            Generate PDF
-          </button>
+          <PDFDownloadLink
+            document={
+              <PDFFile
+                generalInformation={generalInformation}
+                programmingLanguages={programmingLanguages}
+                frameworksAndLibraries={frameworksAndLibraries}
+                tools={tools}
+                languagesSpoken={languagesSpoken}
+                workExperiences={workExperiences}
+                projects={projects}
+                education={education}
+              />
+            }
+            filename="FORM"
+          >
+            {({ loading }) =>
+              loading ? (
+                <button disabled>Generate PDF...</button>
+              ) : (
+                <button>Download PDF</button>
+              )
+            }
+          </PDFDownloadLink>
         </div>
 
         <div className="footer">
