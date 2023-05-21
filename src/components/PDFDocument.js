@@ -116,15 +116,20 @@ class PDFFile extends Component {
           <Text style={styles.skillsHeader}>
             SUMMARY OF SKILLS AND QUALIFICATIONS{"\n"}
           </Text>
-          <Text style={styles.skills}>
-            Programming Languages | {programmingLanguageSeparated}
+          <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
+            Programming Languages |{" "}
+            <Text style={styles.skills}>{programmingLanguageSeparated}</Text>
           </Text>
-          <Text style={styles.skills}>
-            Frameworks And Libraries | {frameworksAndLibrariesSeparated}
+          <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
+            Frameworks And Libraries |{" "}
+            <Text style={styles.skills}>{frameworksAndLibrariesSeparated}</Text>
           </Text>
-          <Text style={styles.skills}>Tools | {toolsSeparated}</Text>
-          <Text style={styles.skills}>
-            Languages Spoken | {languagesSpokenSeparated}
+          <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
+            Tools | <Text style={styles.skills}>{toolsSeparated}</Text>
+          </Text>
+          <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
+            Languages Spoken |{" "}
+            <Text style={styles.skills}>{languagesSpokenSeparated}</Text>
           </Text>
           <Text>
             {"\n"}
@@ -156,28 +161,43 @@ class PDFFile extends Component {
           {/* Render projects */}
           <Text style={styles.header}>PROJECTS{"\n"}</Text>
           {projects.map((project, index) => (
-            <Text key={index} style={styles.text}>
-              {project.projectTitle}, {project.projectLocation}
-              {"\n"}
-              {project.startDate} - {project.endDate}
-              {"\n"}
-              {project.responsibilities}
-              {"\n"}
-              {"\n"}
+            <Text style={styles.text}>
+              <Text key={index} style={{ fontFamily: "Roboto-Bold" }}>
+                {project.projectTitle},{" "}
+              </Text>
+              <Text style={styles.text}>
+                {project.projectLocation}
+                {"\n"}
+              </Text>
+              <Text>
+                {project.startDate} - {project.endDate}
+                {"\n"}
+              </Text>
+              <Text>
+                {project.responsibilities}
+                {"\n"}
+                {"\n"}
+              </Text>
             </Text>
           ))}
 
           {/* Render education */}
           <Text style={styles.header}>EDUCATION{"\n"}</Text>
           {education.map((education, index) => (
-            <Text key={index} style={styles.text}>
-              {education.titleOfStudy}
-              {"\n"}
-              {education.startDate} - {education.endDate}
-              {"\n"}
-              {education.nameOfInstitution}, {education.institutionLocation}
-              {"\n"}
-              {"\n"}
+            <Text style={styles.text}>
+              <Text key={index} style={{ fontFamily: "Roboto-Bold" }}>
+                {education.titleOfStudy}
+                {"\n"}
+              </Text>
+              <Text>
+                {education.startDate} - {education.endDate}
+                {"\n"}
+              </Text>
+              <Text>
+                {education.nameOfInstitution}, {education.institutionLocation}
+                {"\n"}
+                {"\n"}
+              </Text>
             </Text>
           ))}
           <Text style={styles.references}>

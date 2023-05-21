@@ -29,9 +29,6 @@ class App extends Component {
       workExperiences: [],
       projects: [],
       education: [],
-
-      //Generate PDF
-      generatePDF: false,
     };
   }
 
@@ -283,28 +280,6 @@ class App extends Component {
     }
   };
 
-  // generatePdf = () => {
-  //   this.setState({
-  //     generatePDF: true,
-  //   });
-  //   console.log("Generate PDF");
-  //   console.log(this.state);
-  //   // Create a new jsPDF instance
-
-  //   // Access the data from your component's state and use it to construct the PDF content
-  //   const {
-  //     generalInformation,
-  //     programmingLanguages,
-  //     frameworksAndLibraries,
-  //     tools,
-  //     languagesSpoken,
-  //     workExperiences,
-  //     projects,
-  //     education,
-  //   } = this.state; // Replace with your actual state properties
-  //   // doc.text("Hello World!", 10, 10);
-  // };
-
   render() {
     const {
       generalInformation,
@@ -398,6 +373,7 @@ class App extends Component {
               Add
             </button>
           </div>
+
           <PDFDownloadLink
             document={
               <PDFFile
@@ -412,12 +388,15 @@ class App extends Component {
               />
             }
             filename="FORM"
+            className="submit-button"
           >
             {({ loading }) =>
               loading ? (
-                <button disabled>Generate PDF...</button>
+                <button disabled className="submit-link">
+                  Generate PDF...
+                </button>
               ) : (
-                <button>Download PDF</button>
+                <button className="submit-link">Download PDF</button>
               )
             }
           </PDFDownloadLink>
