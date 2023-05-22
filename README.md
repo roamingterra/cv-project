@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# CV Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is my first react application. It is a web app that consists of s styled form that takes in user input regarding the users credentials, experience, ect. When the user clicks download pdf, a pdf is generated and downloaded by the users machine.
 
-## Available Scripts
+**_ Process involved for completing this app _**
 
-In the project directory, you can run:
+Prior to creating this app, I learned the fundamentals of react and I learned mainly how to use class components, which is why I implemented them. After building the class components and implementing them, I started to immediately see the benefits of React, namely the ease of use and reusability of components. Here is a list of steps that were involved in the creation of this app:
 
-### `npm start`
+1. Run create react app and linking the local repository to a github remote repository
+2. Create app components (general info, skills, work experience, projects, and education). These components would manage their own state, and render themselves onto the app.
+3. Build the logic for the App component (add and delete buttons, state, onchange methods, ect.)
+4. Change of design: have the state of the skills component be managed by the app component. This is because several things have to be managed for this component such as the user typing in skills in the different skill fields and pressing enter, which would then create a skill tag visible to the user. I found it easier for the parent app component to manage the state of the skills component because of this
+5. Style the web app using a combination of a global css file, and individual css modules to style each component
+6. Change of design: have the parent app component also manage the state of the all children components, and make use of callback functions in combination with the onDataChange attribute in order to be passed as a prop to the children components. The app component needs access to the data submitted by the user, which is why this was done.
+7. Download and use an npm package react-pdf renderer in order to generate the pdf. This involved the creation of a new PDFFile component, which would be passed the state data of the app component as props to be used in the pdf.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**_ Challenges _**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The first challenge was getting used to the state of the class components, but mainly the figuring out the design of managing state and communicating that state data retrieved from the user to then be used in the pdf. As you can see from the steps taken to complete this project, I had to rework the logic a couple of times in order for this to work properly.
 
-### `npm test`
+Css modules, although not that challenging, was a new concept to me. The main thing to understand was when to use css modules and when to use a general css file for general styling. I like this combination a lot, because it give me flexibility for styling and makes it hard to experience styling conflicts.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The main challenge however, was with the use of react-pdf renderer. Unfortunately, styling a pdf using this package can be quite difficult. Besides looking through the react-pdf renderer resources, I used the following youtube videos as references for finding my way around this tool, and would like to give them a shout out:
 
-### `npm run build`
+https://www.youtube.com/watch?v=JU7rfAMpbZA&list=PLurP1bGDFdaRf-u-UonqLn3ATUUirGYeL&index=6&t=594s
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+https://www.youtube.com/watch?v=HhLa-D0SXlI&list=PLurP1bGDFdaRf-u-UonqLn3ATUUirGYeL&index=7
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**_ Future Potential Improvements _**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+First and foremost, the pdf generated is still unfortunately not completely styled the way I wanted it to be. The main problem was that I could not figure out how to properly work flex-box in tandem with react-pdf renderer. I originally wanted the dates of the components to be on the same line as the first data of the components (ex: Job title for the work experience component), but spaced out all the way to the right of the page. I could not get this to work, and would like to eventually figure this out, or find another approach to rendering pdf's worst case scenario.
 
-### `npm run eject`
+The final future improvement I can see implementing is input validation and form control (what fields need to be filled, character limits, and communicating all of this with the user). I would have liked to have implemented all of this in this version, but decided ultimately to leave it for another time considering time constraints and that the focus of this project was mainly the use of react.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Built with
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[React](https://react.dev/)
+[React-pdf](https://react-pdf.org/)
+[Styled-components](https://styled-components.com/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Instal and run
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+git clone git@github.com:roamingterra/cv-project.git
+cd cv-project
+npm install
+npm run start
