@@ -34,13 +34,13 @@ The final future improvement I can see implementing is input validation and form
 
 # Built with
 
-[React](https://react.dev/)
-[React-pdf](https://react-pdf.org/)
+[React](https://react.dev/)<br>
+[React-pdf](https://react-pdf.org/)<br>
 [Styled-components](https://styled-components.com/)
 
 # Instal and run
 
-git clone git@github.com:roamingterra/cv-project.git
-cd cv-project
-npm install
+git clone git@github.com:roamingterra/cv-project.git<br>
+cd cv-project<br>
+npm install<br>
 npm run start
