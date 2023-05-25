@@ -1,5 +1,4 @@
 import React from "react";
-import { Component } from "react";
 import { Page, Text, Document, StyleSheet, Font } from "@react-pdf/renderer";
 import robotoBold from "../fonts/Roboto-Bold.ttf";
 import robotoRegular from "../fonts/Roboto-Regular.ttf";
@@ -68,146 +67,142 @@ const styles = StyleSheet.create({
   },
 });
 
-class PDFFile extends Component {
-  pageColors = ["#FFFFFF"];
+function PDFFile(props) {
+  const {
+    generalInformation,
+    programmingLanguages,
+    frameworksAndLibraries,
+    tools,
+    languagesSpoken,
+    workExperiences,
+    projects,
+    education,
+  } = props;
 
-  render() {
-    const {
-      generalInformation,
-      programmingLanguages,
-      frameworksAndLibraries,
-      tools,
-      languagesSpoken,
-      workExperiences,
-      projects,
-      education,
-    } = this.props;
+  const programmingLanguageSeparated = programmingLanguages.join(" • ");
+  const frameworksAndLibrariesSeparated = frameworksAndLibraries.join(" • ");
+  const toolsSeparated = tools.join(" • ");
+  const languagesSpokenSeparated = languagesSpoken.join(" • ");
 
-    const programmingLanguageSeparated = programmingLanguages.join(" • ");
-    const frameworksAndLibrariesSeparated = frameworksAndLibraries.join(" • ");
-    const toolsSeparated = tools.join(" • ");
-    const languagesSpokenSeparated = languagesSpoken.join(" • ");
+  return (
+    <Document>
+      <Page
+        style={{
+          ...styles.body,
+        }}
+      >
+        {/* Render name as the title */}
+        <Text style={styles.title}>
+          {generalInformation.firstName} {generalInformation.lastName}
+        </Text>
 
-    return (
-      <Document>
-        <Page
-          style={{
-            ...styles.body,
-          }}
-        >
-          {/* Render name as the title */}
-          <Text style={styles.title}>
-            {generalInformation.firstName} {generalInformation.lastName}
-          </Text>
+        {/* Render General Information */}
+        <Text style={styles.generalInformation}>
+          {generalInformation.phoneNumber} | {generalInformation.email}
+        </Text>
+        <Text style={styles.generalInformation}>
+          {generalInformation.linkedIn}
+        </Text>
+        <Text style={styles.generalInformation}>
+          {generalInformation.gitHub}
+        </Text>
+        <Text>{"\n"}</Text>
 
-          {/* Render General Information */}
-          <Text style={styles.generalInformation}>
-            {generalInformation.phoneNumber} | {generalInformation.email}
-          </Text>
-          <Text style={styles.generalInformation}>
-            {generalInformation.linkedIn}
-          </Text>
-          <Text style={styles.generalInformation}>
-            {generalInformation.gitHub}
-          </Text>
-          <Text>{"\n"}</Text>
+        {/* Render Skills and Qualifications */}
+        <Text style={styles.skillsHeader}>
+          SUMMARY OF SKILLS AND QUALIFICATIONS{"\n"}
+        </Text>
+        <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
+          Programming Languages |{" "}
+          <Text style={styles.skills}>{programmingLanguageSeparated}</Text>
+        </Text>
+        <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
+          Frameworks And Libraries |{" "}
+          <Text style={styles.skills}>{frameworksAndLibrariesSeparated}</Text>
+        </Text>
+        <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
+          Tools | <Text style={styles.skills}>{toolsSeparated}</Text>
+        </Text>
+        <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
+          Languages Spoken |{" "}
+          <Text style={styles.skills}>{languagesSpokenSeparated}</Text>
+        </Text>
+        <Text>
+          {"\n"}
+          {"\n"}
+        </Text>
 
-          {/* Render Skills and Qualifications */}
-          <Text style={styles.skillsHeader}>
-            SUMMARY OF SKILLS AND QUALIFICATIONS{"\n"}
-          </Text>
-          <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
-            Programming Languages |{" "}
-            <Text style={styles.skills}>{programmingLanguageSeparated}</Text>
-          </Text>
-          <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
-            Frameworks And Libraries |{" "}
-            <Text style={styles.skills}>{frameworksAndLibrariesSeparated}</Text>
-          </Text>
-          <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
-            Tools | <Text style={styles.skills}>{toolsSeparated}</Text>
-          </Text>
-          <Text style={{ ...styles.skills, fontFamily: "Roboto-Bold" }}>
-            Languages Spoken |{" "}
-            <Text style={styles.skills}>{languagesSpokenSeparated}</Text>
-          </Text>
-          <Text>
-            {"\n"}
-            {"\n"}
-          </Text>
-
-          {/* Render work experiences */}
-          <Text style={styles.header}>WORK EXPERIENCE{"\n"}</Text>
-          {workExperiences.map((experience, index) => (
-            <Text key={index} style={styles.text}>
-              <Text style={{ fontFamily: "Roboto-Bold" }}>
-                {experience.jobTitle}
-              </Text>
-              {"\n"}
-              <Text>
-                {experience.startDate} - {experience.endDate}
-              </Text>
-              {"\n"}
-              <Text>
-                {experience.companyName}, {experience.companyLocation}
-              </Text>
-              <Text>{"\n"}</Text>
-              <Text>{experience.responsibilities}</Text>
-              {"\n"}
-              {"\n"}
+        {/* Render work experiences */}
+        <Text style={styles.header}>WORK EXPERIENCE{"\n"}</Text>
+        {workExperiences.map((experience, index) => (
+          <Text key={index} style={styles.text}>
+            <Text style={{ fontFamily: "Roboto-Bold" }}>
+              {experience.jobTitle}
             </Text>
-          ))}
+            {"\n"}
+            <Text>
+              {experience.startDate} - {experience.endDate}
+            </Text>
+            {"\n"}
+            <Text>
+              {experience.companyName}, {experience.companyLocation}
+            </Text>
+            <Text>{"\n"}</Text>
+            <Text>{experience.responsibilities}</Text>
+            {"\n"}
+            {"\n"}
+          </Text>
+        ))}
 
-          {/* Render projects */}
-          <Text style={styles.header}>PROJECTS{"\n"}</Text>
-          {projects.map((project, index) => (
+        {/* Render projects */}
+        <Text style={styles.header}>PROJECTS{"\n"}</Text>
+        {projects.map((project, index) => (
+          <Text style={styles.text}>
+            <Text key={index} style={{ fontFamily: "Roboto-Bold" }}>
+              {project.projectTitle},{" "}
+            </Text>
             <Text style={styles.text}>
-              <Text key={index} style={{ fontFamily: "Roboto-Bold" }}>
-                {project.projectTitle},{" "}
-              </Text>
-              <Text style={styles.text}>
-                {project.projectLocation}
-                {"\n"}
-              </Text>
-              <Text>
-                {project.startDate} - {project.endDate}
-                {"\n"}
-              </Text>
-              <Text>
-                {project.responsibilities}
-                {"\n"}
-                {"\n"}
-              </Text>
+              {project.projectLocation}
+              {"\n"}
             </Text>
-          ))}
-
-          {/* Render education */}
-          <Text style={styles.header}>EDUCATION{"\n"}</Text>
-          {education.map((education, index) => (
-            <Text style={styles.text}>
-              <Text key={index} style={{ fontFamily: "Roboto-Bold" }}>
-                {education.titleOfStudy}
-                {"\n"}
-              </Text>
-              <Text>
-                {education.startDate} - {education.endDate}
-                {"\n"}
-              </Text>
-              <Text>
-                {education.nameOfInstitution}, {education.institutionLocation}
-                {"\n"}
-                {"\n"}
-              </Text>
+            <Text>
+              {project.startDate} - {project.endDate}
+              {"\n"}
             </Text>
-          ))}
-          <Text style={styles.references}>
-            {"\n"}
-            {"\n"}***REFERENCES AVAILABLE UPON REQUEST***
+            <Text>
+              {project.responsibilities}
+              {"\n"}
+              {"\n"}
+            </Text>
           </Text>
-        </Page>
-      </Document>
-    );
-  }
+        ))}
+
+        {/* Render education */}
+        <Text style={styles.header}>EDUCATION{"\n"}</Text>
+        {education.map((education, index) => (
+          <Text style={styles.text}>
+            <Text key={index} style={{ fontFamily: "Roboto-Bold" }}>
+              {education.titleOfStudy}
+              {"\n"}
+            </Text>
+            <Text>
+              {education.startDate} - {education.endDate}
+              {"\n"}
+            </Text>
+            <Text>
+              {education.nameOfInstitution}, {education.institutionLocation}
+              {"\n"}
+              {"\n"}
+            </Text>
+          </Text>
+        ))}
+        <Text style={styles.references}>
+          {"\n"}
+          {"\n"}***REFERENCES AVAILABLE UPON REQUEST***
+        </Text>
+      </Page>
+    </Document>
+  );
 }
 
 export default PDFFile;

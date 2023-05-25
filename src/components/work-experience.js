@@ -1,135 +1,105 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import workExperienceCss from "./../styles/workExperience.module.css";
 
-class WorkExperience extends Component {
-  constructor(props) {
-    super(props);
+function WorkExperience(props) {
+  const [dataType, setDataType] = useState("");
+  const [index, setIndex] = useState(0);
 
-    this.dataType = "";
-    this.index = 0;
+  const [state, setState] = useState({
+    jobTitle: "",
+    companyName: "",
+    companyLocation: "",
+    startDate: "",
+    endDate: "",
+    responsibilities: "",
+  });
 
-    this.state = {
-      jobTitle: "",
-      companyName: "",
-      companyLocation: "",
-      startDate: "",
-      endDate: "",
-      responsibilities: "",
-    };
-  }
-
-  componentDidMount() {
-    const { index, dataType } = this.props;
+  useEffect(() => {
+    const { index, dataType } = props;
     // Now you can use the index prop safely
-    this.index = index;
-    this.dataType = dataType;
-  }
+    setIndex(index);
+    setDataType(dataType);
+  });
 
-  updateJobTitle = (event) => {
+  const updateJobTitle = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        jobTitle: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, jobTitle: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  updateCompanyName = (event) => {
+  const updateCompanyName = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        companyName: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, companyName: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  updateCompanyLocation = (event) => {
+  const updateCompanyLocation = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        companyLocation: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, companyLocation: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  updateStartDate = (event) => {
+  const updateStartDate = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        startDate: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, startDate: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  updateEndDate = (event) => {
+  const updateEndDate = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        endDate: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, endDate: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  updateResponsibilities = (event) => {
+  const updateResponsibilities = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        responsibilities: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, responsibilities: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  render() {
-    return (
-      <div className={workExperienceCss.container}>
-        <form>
-          <div className={workExperienceCss.form}>
-            <input
-              type="text"
-              onChange={this.updateJobTitle}
-              placeholder="Job Title"
-              className={`${workExperienceCss.input} ${workExperienceCss.title}`}
-            ></input>
-            <input
-              type="text"
-              onChange={this.updateCompanyName}
-              placeholder="Company Name"
-              className={workExperienceCss.input}
-            ></input>
-            <input
-              type="text"
-              onChange={this.updateCompanyLocation}
-              placeholder="Company Location"
-              className={workExperienceCss.input}
-            ></input>
-            <input
-              type="text"
-              onChange={this.updateStartDate}
-              placeholder="Start Date"
-              className={workExperienceCss.input}
-            ></input>
-            <input
-              type="text"
-              onChange={this.updateEndDate}
-              placeholder="End Date"
-              className={workExperienceCss.input}
-            ></input>
-            <textarea
-              onChange={this.updateResponsibilities}
-              placeholder="Responsibilities"
-              className={`${workExperienceCss.input} ${workExperienceCss.responsibilities}`}
-            ></textarea>
-          </div>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className={workExperienceCss.container}>
+      <form>
+        <div className={workExperienceCss.form}>
+          <input
+            type="text"
+            onChange={updateJobTitle}
+            placeholder="Job Title"
+            className={`${workExperienceCss.input} ${workExperienceCss.title}`}
+          ></input>
+          <input
+            type="text"
+            onChange={updateCompanyName}
+            placeholder="Company Name"
+            className={workExperienceCss.input}
+          ></input>
+          <input
+            type="text"
+            onChange={updateCompanyLocation}
+            placeholder="Company Location"
+            className={workExperienceCss.input}
+          ></input>
+          <input
+            type="text"
+            onChange={updateStartDate}
+            placeholder="Start Date"
+            className={workExperienceCss.input}
+          ></input>
+          <input
+            type="text"
+            onChange={updateEndDate}
+            placeholder="End Date"
+            className={workExperienceCss.input}
+          ></input>
+          <textarea
+            onChange={updateResponsibilities}
+            placeholder="Responsibilities"
+            className={`${workExperienceCss.input} ${workExperienceCss.responsibilities}`}
+          ></textarea>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default WorkExperience;

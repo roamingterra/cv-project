@@ -1,119 +1,93 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import educationCss from "./../styles/education.module.css";
 
-class Education extends Component {
-  constructor(props) {
-    super(props);
+function Education(props) {
+  const [dataType, setDataType] = useState("");
+  const [index, setIndex] = useState(0);
 
-    this.dataType = "";
-    this.index = 0;
+  const [state, setState] = useState({
+    titleOfStudy: "",
+    nameOfInstitution: "",
+    institutionLocation: "",
+    startDate: "",
+    endDate: "",
+  });
 
-    this.state = {
-      titleOfStudy: "",
-      nameOfInstitution: "",
-      institutionLocation: "",
-      startDate: "",
-      endDate: "",
-    };
-  }
-
-  componentDidMount() {
-    const { index, dataType } = this.props;
+  useEffect(() => {
+    const { index, dataType } = props;
     // Now you can use the index prop safely
-    this.index = index;
-    this.dataType = dataType;
-  }
+    setIndex(index);
+    setDataType(dataType);
+  });
 
-  updateTitleOfStudy = (event) => {
+  const updateTitleOfStudy = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        titleOfStudy: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, titleOfStudy: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  updateNameOfInstitution = (event) => {
+  const updateNameOfInstitution = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        nameOfInstitution: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, nameOfInstitution: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  updateInstitutionLocation = (event) => {
+  const updateInstitutionLocation = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        institutionLocation: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, institutionLocation: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  updateStartDate = (event) => {
+  const updateStartDate = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        startDate: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, startDate: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  updateEndDate = (event) => {
+  const updateEndDate = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        endDate: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType, this.index)
-    );
+    setState({ ...state, endDate: value });
+    props.onDataChange(state, dataType, index);
   };
 
-  render() {
-    return (
-      <div className={educationCss.container}>
-        <form>
-          <div className={educationCss.form}>
-            <input
-              type="text"
-              onChange={this.updateTitleOfStudy}
-              placeholder="Title of Study"
-              className={`${educationCss.input} ${educationCss.title}`}
-            ></input>
-            <input
-              type="text"
-              onChange={this.updateNameOfInstitution}
-              placeholder="Name of Institution"
-              className={educationCss.input}
-            ></input>
-            <input
-              type="text"
-              onChange={this.updateInstitutionLocation}
-              placeholder="Institution Location"
-              className={educationCss.input}
-            ></input>
-            <input
-              type="text"
-              onChange={this.updateStartDate}
-              placeholder="Start Date"
-              className={educationCss.input}
-            ></input>
-            <input
-              type="text"
-              onChange={this.updateEndDate}
-              placeholder="End Date"
-              className={educationCss.input}
-            ></input>
-          </div>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className={educationCss.container}>
+      <form>
+        <div className={educationCss.form}>
+          <input
+            type="text"
+            onChange={updateTitleOfStudy}
+            placeholder="Title of Study"
+            className={`${educationCss.input} ${educationCss.title}`}
+          ></input>
+          <input
+            type="text"
+            onChange={updateNameOfInstitution}
+            placeholder="Name of Institution"
+            className={educationCss.input}
+          ></input>
+          <input
+            type="text"
+            onChange={updateInstitutionLocation}
+            placeholder="Institution Location"
+            className={educationCss.input}
+          ></input>
+          <input
+            type="text"
+            onChange={updateStartDate}
+            placeholder="Start Date"
+            className={educationCss.input}
+          ></input>
+          <input
+            type="text"
+            onChange={updateEndDate}
+            placeholder="End Date"
+            className={educationCss.input}
+          ></input>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default Education;

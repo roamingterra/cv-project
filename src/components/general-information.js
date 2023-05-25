@@ -1,134 +1,104 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import generalInfoCss from "./../styles/generalInformation.module.css";
 
-class GeneralInformation extends Component {
-  constructor() {
-    super();
+function GeneralInformation(props) {
+  const [dataType, setDataType] = useState("");
 
-    this.dataType = "";
+  const [state, setState] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+    linkedIn: "",
+    gitHub: "",
+  });
 
-    this.state = {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      email: "",
-      linkedIn: "",
-      gitHub: "",
-    };
-  }
-
-  componentDidMount() {
-    const { dataType } = this.props;
+  useEffect(() => {
+    const { dataType } = props;
     // Now you can use the dataType prop safely
-    this.dataType = dataType;
-  }
+    setDataType(dataType);
+  });
 
-  updateFirstName = (event) => {
+  const updateFirstName = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        firstName: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType)
-    );
+    setState((prevState) => ({ ...prevState, firstName: value }));
+    props.onDataChange(state, dataType);
   };
 
-  updateLastName = (event) => {
+  const updateLastName = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        lastName: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType)
-    );
+    setState((prevState) => ({ ...prevState, lastName: value }));
+    props.onDataChange(state, dataType);
   };
 
-  updatePhoneNumber = (event) => {
+  const updatePhoneNumber = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        phoneNumber: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType)
-    );
+    setState((prevState) => ({ ...prevState, phoneNumber: value }));
+    props.onDataChange(state, dataType);
   };
 
-  updateEmail = (event) => {
+  const updateEmail = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        email: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType)
-    );
+    setState((prevState) => ({ ...prevState, email: value }));
+    props.onDataChange(state, dataType);
   };
 
-  updateLinkedIn = (event) => {
+  const updateLinkedIn = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        linkedIn: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType)
-    );
+    setState((prevState) => ({ ...prevState, linkedIn: value }));
+    props.onDataChange(state, dataType);
   };
 
-  updateGitHub = (event) => {
+  const updateGitHub = (event) => {
     const { value } = event.target;
-    this.setState(
-      {
-        gitHub: value,
-      },
-      () => this.props.onDataChange(this.state, this.dataType)
-    );
+    setState((prevState) => ({ ...prevState, gitHub: value }));
+    props.onDataChange(state, dataType);
   };
 
-  render() {
-    return (
-      <div className={generalInfoCss.container}>
-        <form>
-          <div className={generalInfoCss.form}>
-            <input
-              type="text"
-              onChange={this.updateFirstName}
-              placeholder="First Name"
-              className={generalInfoCss.input}
-            ></input>
-            <input
-              type="text"
-              onChange={this.updateLastName}
-              placeholder="Last Name"
-              className={generalInfoCss.input}
-            ></input>
-            <input
-              type="tel"
-              onChange={this.updatePhoneNumber}
-              placeholder="Phone Number"
-              className={generalInfoCss.input}
-            ></input>
-            <input
-              type="email"
-              onChange={this.updateEmail}
-              placeholder="Email"
-              className={generalInfoCss.input}
-            ></input>
-            <input
-              type="url"
-              onChange={this.updateLinkedIn}
-              placeholder="LinkedIn"
-              className={generalInfoCss.input}
-            ></input>
-            <input
-              type="url"
-              onChange={this.updateGitHub}
-              placeholder="GitHub"
-              className={generalInfoCss.input}
-            ></input>
-          </div>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className={generalInfoCss.container}>
+      <form>
+        <div className={generalInfoCss.form}>
+          <input
+            type="text"
+            onChange={updateFirstName}
+            placeholder="First Name"
+            className={generalInfoCss.input}
+          ></input>
+          <input
+            type="text"
+            onChange={updateLastName}
+            placeholder="Last Name"
+            className={generalInfoCss.input}
+          ></input>
+          <input
+            type="tel"
+            onChange={updatePhoneNumber}
+            placeholder="Phone Number"
+            className={generalInfoCss.input}
+          ></input>
+          <input
+            type="email"
+            onChange={updateEmail}
+            placeholder="Email"
+            className={generalInfoCss.input}
+          ></input>
+          <input
+            type="url"
+            onChange={updateLinkedIn}
+            placeholder="LinkedIn"
+            className={generalInfoCss.input}
+          ></input>
+          <input
+            type="url"
+            onChange={updateGitHub}
+            placeholder="GitHub"
+            className={generalInfoCss.input}
+          ></input>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default GeneralInformation;

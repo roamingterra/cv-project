@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import GeneralInformation from "./components/general-information";
 import Skills from "./components/skills";
 import WorkExperience from "./components/work-experience";
@@ -9,39 +9,39 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import uniqid from "uniqid";
 import "./styles/style.css";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      //Added components
-      skillElements: [],
-      workExperienceAddedInstances: [],
-      projectsAddedInstances: [],
-      educationAddedInstances: [],
+function App() {
+  const [state, setState] = useState({
+    //Added components
+    skillElements: [],
+    workExperienceAddedInstances: [],
+    projectsAddedInstances: [],
+    educationAddedInstances: [],
 
-      //CV data
-      programmingLanguages: [],
-      frameworksAndLibraries: [],
-      tools: [],
-      languagesSpoken: [],
+    //CV data
+    programmingLanguages: [],
+    frameworksAndLibraries: [],
+    tools: [],
+    languagesSpoken: [],
 
-      generalInformation: [],
-      workExperiences: [],
-      projects: [],
-      education: [],
-    };
-  }
+    generalInformation: [],
+    workExperiences: [],
+    projects: [],
+    education: [],
+  });
 
-  newWorkExperience = () => {
+  useEffect(() => {});
+
+  const newWorkExperience = () => {
     const newInstance = (
       <WorkExperience
-        key={this.state.workExperienceAddedInstances.length}
-        index={this.state.workExperiences.length}
+        key={state.workExperienceAddedInstances.length}
+        index={state.workExperiences.length}
         dataType="workExperiences"
-        onDataChange={this.receiveStateData}
+        onDataChange={receiveStateData}
       ></WorkExperience>
     );
-    this.setState((prevState) => ({
+    setState((prevState) => ({
+      ...prevState,
       workExperienceAddedInstances: [
         ...prevState.workExperienceAddedInstances,
         newInstance,
@@ -49,8 +49,9 @@ class App extends Component {
     }));
   };
 
-  removeWorkExperience = () => {
-    this.setState((prevState) => ({
+  const removeWorkExperience = () => {
+    setState((prevState) => ({
+      ...prevState,
       workExperienceAddedInstances: [
         ...prevState.workExperienceAddedInstances,
       ].slice(0, -1),
@@ -58,16 +59,17 @@ class App extends Component {
     }));
   };
 
-  newProject = () => {
+  const newProject = () => {
     const newInstance = (
       <Projects
-        key={this.state.projectsAddedInstances.length}
-        index={this.state.projects.length}
+        key={state.projectsAddedInstances.length}
+        index={state.projects.length}
         dataType="projects"
-        onDataChange={this.receiveStateData}
+        onDataChange={receiveStateData}
       ></Projects>
     );
-    this.setState((prevState) => ({
+    setState((prevState) => ({
+      ...prevState,
       projectsAddedInstances: [
         ...prevState.projectsAddedInstances,
         newInstance,
@@ -75,8 +77,9 @@ class App extends Component {
     }));
   };
 
-  removeProject = () => {
-    this.setState((prevState) => ({
+  const removeProject = () => {
+    setState((prevState) => ({
+      ...prevState,
       projectsAddedInstances: [...prevState.projectsAddedInstances].slice(
         0,
         -1
@@ -85,16 +88,17 @@ class App extends Component {
     }));
   };
 
-  newEducation = () => {
+  const newEducation = () => {
     const newInstance = (
       <Education
-        key={this.state.educationAddedInstances.length}
-        index={this.state.education.length}
+        key={state.educationAddedInstances.length}
+        index={state.education.length}
         dataType="education"
-        onDataChange={this.receiveStateData}
+        onDataChange={receiveStateData}
       ></Education>
     );
-    this.setState((prevState) => ({
+    setState((prevState) => ({
+      ...prevState,
       educationAddedInstances: [
         ...prevState.educationAddedInstances,
         newInstance,
@@ -102,8 +106,9 @@ class App extends Component {
     }));
   };
 
-  removeEducation = () => {
-    this.setState((prevState) => ({
+  const removeEducation = () => {
+    setState((prevState) => ({
+      ...prevState,
       educationAddedInstances: [...prevState.educationAddedInstances].slice(
         0,
         -1
@@ -113,7 +118,7 @@ class App extends Component {
   };
 
   //Skill methods
-  addSkillElement = (skillInfo) => {
+  const addSkillElement = (skillInfo) => {
     const newSkill = skillInfo[0];
     const skillType = skillInfo[1];
     const key = skillType + "-" + uniqid();
@@ -122,25 +127,27 @@ class App extends Component {
         <div>{newSkill}</div>
         <div
           onClick={() => {
-            this.removeSkill(key);
+            removeSkill(key);
           }}
         >
           ✖
         </div>
       </div>
     );
-    this.setState((prevState) => ({
+    setState((prevState) => ({
+      ...prevState,
       skillElements: [...prevState.skillElements, newSkillElement],
     }));
   };
 
-  removeSkill = (key) => {
+  const removeSkill = (key) => {
     const regex = /^(.+?)-/;
     const skillType = key.match(regex)[1];
     let skillToBeRemoved;
 
     // Remove skill element
-    this.setState((prevState) => ({
+    setState((prevState) => ({
+      ...prevState,
       skillElements: prevState.skillElements.filter((element) => {
         if (element.key !== key) return true;
         else {
@@ -152,25 +159,29 @@ class App extends Component {
 
     // Remove specific skill from state
     if (skillType === "programmingLanguage") {
-      this.setState((prevState) => ({
+      setState((prevState) => ({
+        ...prevState,
         programmingLanguages: prevState.programmingLanguages.filter(
           (element) => element !== skillToBeRemoved
         ),
       }));
     } else if (skillType === "framework") {
-      this.setState((prevState) => ({
+      setState((prevState) => ({
+        ...prevState,
         frameworksAndLibraries: prevState.frameworksAndLibraries.filter(
           (element) => element !== skillToBeRemoved
         ),
       }));
     } else if (skillType === "tool") {
-      this.setState((prevState) => ({
+      setState((prevState) => ({
+        ...prevState,
         tools: prevState.tools.filter(
           (element) => element !== skillToBeRemoved
         ),
       }));
     } else if (skillType === "languageSpoken") {
-      this.setState((prevState) => ({
+      setState((prevState) => ({
+        ...prevState,
         languagesSpoken: prevState.languagesSpoken.filter(
           (element) => element !== skillToBeRemoved
         ),
@@ -178,93 +189,76 @@ class App extends Component {
     }
   };
 
-  addProgrammingLanguage = async (event) => {
-    const skillType = "programmingLanguage";
+  const addProgrammingLanguage = async (event) => {
     if (event.key === "Enter") {
-      return await new Promise((resolve) => {
-        this.setState(
-          (prevState) => ({
-            programmingLanguages: [
-              ...prevState.programmingLanguages,
-              event.target.value,
-            ],
-          }),
-          () => {
-            const newSkill = event.target.value;
-            event.target.value = "";
-            const skillInfo = [newSkill, skillType];
-            resolve(skillInfo);
-          }
-        );
-      });
+      const skillType = "programmingLanguage";
+
+      setState((prevState) => ({
+        ...prevState,
+        programmingLanguages: [
+          ...prevState.programmingLanguages,
+          event.target.value,
+        ],
+      }));
+
+      const newSkill = event.target.value;
+      event.target.value = "";
+      const skillInfo = [newSkill, skillType];
+      return skillInfo;
     }
   };
 
-  addFramework = async (event) => {
-    const skillType = "framework";
+  const addFramework = async (event) => {
     if (event.key === "Enter") {
-      return await new Promise((resolve) => {
-        this.setState(
-          (prevState) => ({
-            frameworksAndLibraries: [
-              ...prevState.frameworksAndLibraries,
-              event.target.value,
-            ],
-          }),
-          () => {
-            const newSkill = event.target.value;
-            event.target.value = "";
-            const skillInfo = [newSkill, skillType];
-            resolve(skillInfo);
-          }
-        );
-      });
+      const skillType = "framework";
+      setState((prevState) => ({
+        ...prevState,
+        frameworksAndLibraries: [
+          ...prevState.frameworksAndLibraries,
+          event.target.value,
+        ],
+      }));
+
+      const newSkill = event.target.value;
+      event.target.value = "";
+      const skillInfo = [newSkill, skillType];
+      return skillInfo;
     }
   };
 
-  addTool = async (event) => {
-    const skillType = "tool";
+  const addTool = async (event) => {
     if (event.key === "Enter") {
-      return await new Promise((resolve) => {
-        this.setState(
-          (prevState) => ({
-            tools: [...prevState.tools, event.target.value],
-          }),
-          () => {
-            const newSkill = event.target.value;
-            event.target.value = "";
-            const skillInfo = [newSkill, skillType];
-            resolve(skillInfo);
-          }
-        );
-      });
+      const skillType = "tool";
+      setState((prevState) => ({
+        ...prevState,
+        tools: [...prevState.tools, event.target.value],
+      }));
+
+      const newSkill = event.target.value;
+      event.target.value = "";
+      const skillInfo = [newSkill, skillType];
+      return skillInfo;
     }
   };
 
-  addLanguageSpoken = async (event) => {
-    const skillType = "languageSpoken";
+  const addLanguageSpoken = async (event) => {
     if (event.key === "Enter") {
-      return await new Promise((resolve) => {
-        this.setState(
-          (prevState) => ({
-            languagesSpoken: [...prevState.languagesSpoken, event.target.value],
-          }),
-          () => {
-            const newSkill = event.target.value;
-            event.target.value = "";
-            const skillInfo = [newSkill, skillType];
-            resolve(skillInfo);
-          }
-        );
-      });
+      const skillType = "languageSpoken";
+      setState((prevState) => ({
+        ...prevState,
+        languagesSpoken: [...prevState.languagesSpoken, event.target.value],
+      }));
+
+      const newSkill = event.target.value;
+      event.target.value = "";
+      const skillInfo = [newSkill, skillType];
+      return skillInfo;
     }
   };
 
-  receiveStateData = (newData, dataType, index) => {
+  const receiveStateData = (newData, dataType, index) => {
     if (dataType === "generalInformation") {
-      this.setState({
-        [dataType]: newData,
-      });
+      setState({ ...state, [dataType]: newData });
     }
 
     if (
@@ -272,146 +266,144 @@ class App extends Component {
       dataType === "projects" ||
       dataType === "education"
     ) {
-      this.setState((prevState) => {
+      setState((prevState) => {
         const updatedData = [...prevState[dataType]];
         updatedData[index] = newData;
-        return { [dataType]: updatedData };
+        return { ...prevState, [dataType]: updatedData };
       });
     }
   };
 
-  render() {
-    const {
-      generalInformation,
-      programmingLanguages,
-      frameworksAndLibraries,
-      tools,
-      languagesSpoken,
-      workExperiences,
-      projects,
-      education,
-    } = this.state;
-    return (
-      <div className="App">
-        <div className="header">
-          <h1>WEB DEV CV GENERATOR</h1>
-        </div>
-        <div className="content">
-          <div className="component">
-            <h2>General Information</h2>
-            <GeneralInformation
-              dataType="generalInformation"
-              onDataChange={this.receiveStateData}
-            ></GeneralInformation>
-          </div>
-
-          <div className="component">
-            <div className="skills-header">
-              <h2>Skills and Qualifications</h2>
-              <h4>*type in a skill and press ENTER to add a skill tag</h4>
-            </div>
-            <div className="skill-tags">{this.state.skillElements}</div>
-            <Skills
-              addProgrammingLanguage={this.addProgrammingLanguage}
-              addFramework={this.addFramework}
-              addTool={this.addTool}
-              addLanguageSpoken={this.addLanguageSpoken}
-              addSkillElement={this.addSkillElement}
-            ></Skills>
-          </div>
-
-          <div className="component">
-            <h2>Work Experience</h2>
-            <WorkExperience
-              index={this.state.workExperiences.length}
-              dataType="workExperiences"
-              onDataChange={this.receiveStateData}
-            ></WorkExperience>
-            {this.state.workExperienceAddedInstances}
-            {this.state.workExperienceAddedInstances.length !== 0 && (
-              <button className="delete" onClick={this.removeWorkExperience}>
-                Delete
-              </button>
-            )}
-            <button className="add" onClick={this.newWorkExperience}>
-              Add
-            </button>
-          </div>
-
-          <div className="component">
-            <h2>Projects</h2>
-            <Projects
-              index={this.state.projects.length}
-              dataType="projects"
-              onDataChange={this.receiveStateData}
-            ></Projects>
-            {this.state.projectsAddedInstances}
-            {this.state.projectsAddedInstances.length !== 0 && (
-              <button className="delete" onClick={this.removeProject}>
-                Delete
-              </button>
-            )}
-            <button className="add" onClick={this.newProject}>
-              Add
-            </button>
-          </div>
-
-          <div className="component">
-            <h2>Education</h2>
-            <Education
-              index={this.state.education.length}
-              dataType="education"
-              onDataChange={this.receiveStateData}
-            ></Education>
-            {this.state.educationAddedInstances}
-            {this.state.educationAddedInstances.length !== 0 && (
-              <button className="delete" onClick={this.removeEducation}>
-                Delete
-              </button>
-            )}
-            <button className="add" onClick={this.newEducation}>
-              Add
-            </button>
-          </div>
-
-          <PDFDownloadLink
-            document={
-              <PDFFile
-                generalInformation={generalInformation}
-                programmingLanguages={programmingLanguages}
-                frameworksAndLibraries={frameworksAndLibraries}
-                tools={tools}
-                languagesSpoken={languagesSpoken}
-                workExperiences={workExperiences}
-                projects={projects}
-                education={education}
-              />
-            }
-            filename="FORM"
-            className="submit-button"
-          >
-            {({ loading }) =>
-              loading ? (
-                <button disabled className="submit-link">
-                  Generate PDF...
-                </button>
-              ) : (
-                <button className="submit-link">Download PDF</button>
-              )
-            }
-          </PDFDownloadLink>
+  const {
+    generalInformation,
+    programmingLanguages,
+    frameworksAndLibraries,
+    tools,
+    languagesSpoken,
+    workExperiences,
+    projects,
+    education,
+  } = state;
+  return (
+    <div className="App">
+      <div className="header">
+        <h1>WEB DEV CV GENERATOR</h1>
+      </div>
+      <div className="content">
+        <div className="component">
+          <h2>General Information</h2>
+          <GeneralInformation
+            dataType="generalInformation"
+            onDataChange={receiveStateData}
+          ></GeneralInformation>
         </div>
 
-        <div className="footer">
-          <div>Website created by Daniel Ballerini</div>
-          <div>
-            with help from the
-            <a href="https://www.theodinproject.com/"> © Odin Project</a>
+        <div className="component">
+          <div className="skills-header">
+            <h2>Skills and Qualifications</h2>
+            <h4>*type in a skill and press ENTER to add a skill tag</h4>
           </div>
+          <div className="skill-tags">{state.skillElements}</div>
+          <Skills
+            addProgrammingLanguage={addProgrammingLanguage}
+            addFramework={addFramework}
+            addTool={addTool}
+            addLanguageSpoken={addLanguageSpoken}
+            addSkillElement={addSkillElement}
+          ></Skills>
+        </div>
+
+        <div className="component">
+          <h2>Work Experience</h2>
+          <WorkExperience
+            index={state.workExperiences.length}
+            dataType="workExperiences"
+            onDataChange={receiveStateData}
+          ></WorkExperience>
+          {state.workExperienceAddedInstances}
+          {state.workExperienceAddedInstances.length !== 0 && (
+            <button className="delete" onClick={removeWorkExperience}>
+              Delete
+            </button>
+          )}
+          <button className="add" onClick={newWorkExperience}>
+            Add
+          </button>
+        </div>
+
+        <div className="component">
+          <h2>Projects</h2>
+          <Projects
+            index={state.projects.length}
+            dataType="projects"
+            onDataChange={receiveStateData}
+          ></Projects>
+          {state.projectsAddedInstances}
+          {state.projectsAddedInstances.length !== 0 && (
+            <button className="delete" onClick={removeProject}>
+              Delete
+            </button>
+          )}
+          <button className="add" onClick={newProject}>
+            Add
+          </button>
+        </div>
+
+        <div className="component">
+          <h2>Education</h2>
+          <Education
+            index={state.education.length}
+            dataType="education"
+            onDataChange={receiveStateData}
+          ></Education>
+          {state.educationAddedInstances}
+          {state.educationAddedInstances.length !== 0 && (
+            <button className="delete" onClick={removeEducation}>
+              Delete
+            </button>
+          )}
+          <button className="add" onClick={newEducation}>
+            Add
+          </button>
+        </div>
+
+        <PDFDownloadLink
+          document={
+            <PDFFile
+              generalInformation={generalInformation}
+              programmingLanguages={programmingLanguages}
+              frameworksAndLibraries={frameworksAndLibraries}
+              tools={tools}
+              languagesSpoken={languagesSpoken}
+              workExperiences={workExperiences}
+              projects={projects}
+              education={education}
+            />
+          }
+          filename="FORM"
+          className="submit-button"
+        >
+          {({ loading }) =>
+            loading ? (
+              <button disabled className="submit-link">
+                Generate PDF...
+              </button>
+            ) : (
+              <button className="submit-link">Download PDF</button>
+            )
+          }
+        </PDFDownloadLink>
+      </div>
+
+      <div className="footer">
+        <div>Website created by Daniel Ballerini</div>
+        <div>
+          with help from the
+          <a href="https://www.theodinproject.com/"> © Odin Project</a>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;
