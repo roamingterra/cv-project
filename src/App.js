@@ -24,9 +24,9 @@ function App() {
     languagesSpoken: [],
 
     generalInformation: [],
-    workExperiences: [],
-    projects: [],
-    education: [],
+    workExperiences: [{}],
+    projects: [{}],
+    education: [{}],
   });
 
   useEffect(() => {});
@@ -257,21 +257,29 @@ function App() {
   };
 
   const receiveStateData = (newData, dataType, index) => {
-    if (dataType === "generalInformation") {
-      setState({ ...state, [dataType]: newData });
-    }
+    setState((prevState) => {
+      if (dataType === "generalInformation") {
+        return { ...prevState, [dataType]: newData };
+      }
 
-    if (
-      dataType === "workExperiences" ||
-      dataType === "projects" ||
-      dataType === "education"
-    ) {
-      setState((prevState) => {
+      if (
+        dataType === "workExperiences" ||
+        dataType === "projects" ||
+        dataType === "education"
+      ) {
         const updatedData = [...prevState[dataType]];
         updatedData[index] = newData;
+
+        console.log("Updated State:", {
+          ...prevState,
+          [dataType]: updatedData,
+        });
+
         return { ...prevState, [dataType]: updatedData };
-      });
-    }
+      }
+
+      return prevState; // Return previous state if no updates are needed
+    });
   };
 
   const {
@@ -284,6 +292,7 @@ function App() {
     projects,
     education,
   } = state;
+
   return (
     <div className="App">
       <div className="header">
@@ -316,7 +325,7 @@ function App() {
         <div className="component">
           <h2>Work Experience</h2>
           <WorkExperience
-            index={state.workExperiences.length}
+            index={state.workExperiences.length - 1}
             dataType="workExperiences"
             onDataChange={receiveStateData}
           ></WorkExperience>
@@ -334,7 +343,7 @@ function App() {
         <div className="component">
           <h2>Projects</h2>
           <Projects
-            index={state.projects.length}
+            index={state.projects.length - 1}
             dataType="projects"
             onDataChange={receiveStateData}
           ></Projects>
@@ -352,7 +361,7 @@ function App() {
         <div className="component">
           <h2>Education</h2>
           <Education
-            index={state.education.length}
+            index={state.education.length - 1}
             dataType="education"
             onDataChange={receiveStateData}
           ></Education>

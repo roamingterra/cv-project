@@ -3,7 +3,7 @@ import educationCss from "./../styles/education.module.css";
 
 function Education(props) {
   const [dataType, setDataType] = useState("");
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(props.index);
 
   const [state, setState] = useState({
     titleOfStudy: "",
@@ -22,32 +22,36 @@ function Education(props) {
 
   const updateTitleOfStudy = (event) => {
     const { value } = event.target;
-    setState({ ...state, titleOfStudy: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, titleOfStudy: value }));
+    props.onDataChange({ ...state, titleOfStudy: value }, dataType, index);
   };
 
   const updateNameOfInstitution = (event) => {
     const { value } = event.target;
-    setState({ ...state, nameOfInstitution: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, nameOfInstitution: value }));
+    props.onDataChange({ ...state, nameOfInstitution: value }, dataType, index);
   };
 
   const updateInstitutionLocation = (event) => {
     const { value } = event.target;
-    setState({ ...state, institutionLocation: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, institutionLocation: value }));
+    props.onDataChange(
+      { ...state, institutionLocation: value },
+      dataType,
+      index
+    );
   };
 
   const updateStartDate = (event) => {
     const { value } = event.target;
-    setState({ ...state, startDate: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, startDate: value }));
+    props.onDataChange({ ...state, startDate: value }, dataType, index);
   };
 
   const updateEndDate = (event) => {
     const { value } = event.target;
-    setState({ ...state, endDate: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, endDate: value }));
+    props.onDataChange({ ...state, endDate: value }, dataType, index);
   };
 
   return (

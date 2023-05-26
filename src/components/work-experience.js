@@ -3,7 +3,7 @@ import workExperienceCss from "./../styles/workExperience.module.css";
 
 function WorkExperience(props) {
   const [dataType, setDataType] = useState("");
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(props.index);
 
   const [state, setState] = useState({
     jobTitle: "",
@@ -23,40 +23,41 @@ function WorkExperience(props) {
 
   const updateJobTitle = (event) => {
     const { value } = event.target;
-    setState({ ...state, jobTitle: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, jobTitle: value }));
+    props.onDataChange({ ...state, jobTitle: value }, dataType, index);
   };
 
   const updateCompanyName = (event) => {
     const { value } = event.target;
-    setState({ ...state, companyName: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, companyName: value }));
+    props.onDataChange({ ...state, companyName: value }, dataType, index);
   };
 
   const updateCompanyLocation = (event) => {
     const { value } = event.target;
-    setState({ ...state, companyLocation: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, companyLocation: value }));
+    props.onDataChange({ ...state, companyLocation: value }, dataType, index);
   };
 
   const updateStartDate = (event) => {
     const { value } = event.target;
-    setState({ ...state, startDate: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, startDate: value }));
+    props.onDataChange({ ...state, startDate: value }, dataType, index);
   };
 
   const updateEndDate = (event) => {
     const { value } = event.target;
-    setState({ ...state, endDate: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, endDate: value }));
+    props.onDataChange({ ...state, endDate: value }, dataType, index);
   };
 
   const updateResponsibilities = (event) => {
     const { value } = event.target;
-    setState({ ...state, responsibilities: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, responsibilities: value }));
+    props.onDataChange({ ...state, responsibilities: value }, dataType, index);
   };
 
+  console.log(index);
   return (
     <div className={workExperienceCss.container}>
       <form>

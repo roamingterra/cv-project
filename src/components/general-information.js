@@ -22,37 +22,37 @@ function GeneralInformation(props) {
   const updateFirstName = (event) => {
     const { value } = event.target;
     setState((prevState) => ({ ...prevState, firstName: value }));
-    props.onDataChange(state, dataType);
+    props.onDataChange({ ...state, firstName: value }, dataType);
   };
 
   const updateLastName = (event) => {
     const { value } = event.target;
     setState((prevState) => ({ ...prevState, lastName: value }));
-    props.onDataChange(state, dataType);
+    props.onDataChange({ ...state, lastName: value }, dataType);
   };
 
   const updatePhoneNumber = (event) => {
     const { value } = event.target;
     setState((prevState) => ({ ...prevState, phoneNumber: value }));
-    props.onDataChange(state, dataType);
+    props.onDataChange({ ...state, phoneNumber: value }, dataType);
   };
 
   const updateEmail = (event) => {
     const { value } = event.target;
     setState((prevState) => ({ ...prevState, email: value }));
-    props.onDataChange(state, dataType);
+    props.onDataChange({ ...state, email: value }, dataType);
   };
 
   const updateLinkedIn = (event) => {
     const { value } = event.target;
     setState((prevState) => ({ ...prevState, linkedIn: value }));
-    props.onDataChange(state, dataType);
+    props.onDataChange({ ...state, linkedIn: value }, dataType);
   };
 
   const updateGitHub = (event) => {
     const { value } = event.target;
     setState((prevState) => ({ ...prevState, gitHub: value }));
-    props.onDataChange(state, dataType);
+    props.onDataChange({ ...state, gitHub: value }, dataType);
   };
 
   return (

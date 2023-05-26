@@ -3,7 +3,7 @@ import projectsCss from "./../styles/projects.module.css";
 
 function Projects(props) {
   const [dataType, setDataType] = useState("");
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(props.index);
 
   const [state, setState] = useState({
     projectTitle: "",
@@ -22,32 +22,32 @@ function Projects(props) {
 
   const updateProjectTitle = (event) => {
     const { value } = event.target;
-    setState({ ...state, projectTitle: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, projectTitle: value }));
+    props.onDataChange({ ...state, projectTitle: value }, dataType, index);
   };
 
   const updateProjectLocation = (event) => {
     const { value } = event.target;
-    setState({ ...state, projectLocation: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, projectLocation: value }));
+    props.onDataChange({ ...state, projectLocation: value }, dataType, index);
   };
 
   const updateStartDate = (event) => {
     const { value } = event.target;
-    setState({ ...state, startDate: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, startDate: value }));
+    props.onDataChange({ ...state, startDate: value }, dataType, index);
   };
 
   const updateEndDate = (event) => {
     const { value } = event.target;
-    setState({ ...state, endDate: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, endDate: value }));
+    props.onDataChange({ ...state, endDate: value }, dataType, index);
   };
 
   const updateResponsibilities = (event) => {
     const { value } = event.target;
-    setState({ ...state, responsibilities: value });
-    props.onDataChange(state, dataType, index);
+    setState((prevState) => ({ ...prevState, responsibilities: value }));
+    props.onDataChange({ ...state, responsibilities: value }, dataType, index);
   };
 
   return (
