@@ -3,6 +3,7 @@
 This is my first react application. It is a web app that consists of s styled form that takes in user input regarding the users credentials, experience, ect. When the user clicks download pdf, a pdf is generated and downloaded by the users machine.
 
 **_ May 26 2023 UPDATE _**
+
 I updated this project by converting from class components to functional components.
 
 **_ Process involved for completing this app _**
