@@ -6,6 +6,7 @@ function WorkExperience(props) {
   const [index, setIndex] = useState(props.index);
 
   const [state, setState] = useState({
+    key: `work-data-${props.index}`,
     jobTitle: "",
     companyName: "",
     companyLocation: "",
@@ -57,7 +58,6 @@ function WorkExperience(props) {
     props.onDataChange({ ...state, responsibilities: value }, dataType, index);
   };
 
-  console.log(index);
   return (
     <div className={workExperienceCss.container}>
       <form>

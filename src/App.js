@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import GeneralInformation from "./components/general-information";
 import Skills from "./components/skills";
 import WorkExperience from "./components/work-experience";
@@ -24,17 +24,15 @@ function App() {
     languagesSpoken: [],
 
     generalInformation: [],
-    workExperiences: [{}],
-    projects: [{}],
-    education: [{}],
+    workExperiences: [],
+    projects: [],
+    education: [],
   });
-
-  useEffect(() => {});
 
   const newWorkExperience = () => {
     const newInstance = (
       <WorkExperience
-        key={state.workExperienceAddedInstances.length}
+        key={`work-instance-${state.workExperienceAddedInstances.length + 1}`}
         index={state.workExperiences.length}
         dataType="workExperiences"
         onDataChange={receiveStateData}
@@ -62,7 +60,7 @@ function App() {
   const newProject = () => {
     const newInstance = (
       <Projects
-        key={state.projectsAddedInstances.length}
+        key={`project-instance-${state.projectsAddedInstances.length + 1}`}
         index={state.projects.length}
         dataType="projects"
         onDataChange={receiveStateData}
@@ -91,7 +89,7 @@ function App() {
   const newEducation = () => {
     const newInstance = (
       <Education
-        key={state.educationAddedInstances.length}
+        key={`education-instance-${state.educationAddedInstances.length + 1}`}
         index={state.education.length}
         dataType="education"
         onDataChange={receiveStateData}
@@ -269,12 +267,6 @@ function App() {
       ) {
         const updatedData = [...prevState[dataType]];
         updatedData[index] = newData;
-
-        console.log("Updated State:", {
-          ...prevState,
-          [dataType]: updatedData,
-        });
-
         return { ...prevState, [dataType]: updatedData };
       }
 
@@ -325,7 +317,8 @@ function App() {
         <div className="component">
           <h2>Work Experience</h2>
           <WorkExperience
-            index={state.workExperiences.length - 1}
+            key={`work-instance-0`}
+            index={0}
             dataType="workExperiences"
             onDataChange={receiveStateData}
           ></WorkExperience>
@@ -343,7 +336,8 @@ function App() {
         <div className="component">
           <h2>Projects</h2>
           <Projects
-            index={state.projects.length - 1}
+            key={`project-instance-0`}
+            index={0}
             dataType="projects"
             onDataChange={receiveStateData}
           ></Projects>
@@ -361,7 +355,8 @@ function App() {
         <div className="component">
           <h2>Education</h2>
           <Education
-            index={state.education.length - 1}
+            key={`education-instance-0`}
+            index={0}
             dataType="education"
             onDataChange={receiveStateData}
           ></Education>
@@ -379,6 +374,7 @@ function App() {
         <PDFDownloadLink
           document={
             <PDFFile
+              key="pdf-file"
               generalInformation={generalInformation}
               programmingLanguages={programmingLanguages}
               frameworksAndLibraries={frameworksAndLibraries}

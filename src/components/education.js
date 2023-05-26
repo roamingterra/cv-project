@@ -6,6 +6,7 @@ function Education(props) {
   const [index, setIndex] = useState(props.index);
 
   const [state, setState] = useState({
+    key: `education-data-${props.index}`,
     titleOfStudy: "",
     nameOfInstitution: "",
     institutionLocation: "",

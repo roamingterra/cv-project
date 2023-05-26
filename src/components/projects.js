@@ -6,6 +6,7 @@ function Projects(props) {
   const [index, setIndex] = useState(props.index);
 
   const [state, setState] = useState({
+    key: `project-data-${props.index}`,
     projectTitle: "",
     projectLocation: "",
     startDate: "",

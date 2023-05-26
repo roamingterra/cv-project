@@ -135,7 +135,7 @@ function PDFFile(props) {
         {/* Render work experiences */}
         <Text style={styles.header}>WORK EXPERIENCE{"\n"}</Text>
         {workExperiences.map((experience, index) => (
-          <Text key={index} style={styles.text}>
+          <Text key={`work-experience-pdf-${index}`} style={styles.text}>
             <Text style={{ fontFamily: "Roboto-Bold" }}>
               {experience.jobTitle}
             </Text>
@@ -157,8 +157,8 @@ function PDFFile(props) {
         {/* Render projects */}
         <Text style={styles.header}>PROJECTS{"\n"}</Text>
         {projects.map((project, index) => (
-          <Text style={styles.text}>
-            <Text key={index} style={{ fontFamily: "Roboto-Bold" }}>
+          <Text style={styles.text} key={`project-pdf-${index}`}>
+            <Text style={{ fontFamily: "Roboto-Bold" }}>
               {project.projectTitle},{" "}
             </Text>
             <Text style={styles.text}>
@@ -180,8 +180,8 @@ function PDFFile(props) {
         {/* Render education */}
         <Text style={styles.header}>EDUCATION{"\n"}</Text>
         {education.map((education, index) => (
-          <Text style={styles.text}>
-            <Text key={index} style={{ fontFamily: "Roboto-Bold" }}>
+          <Text style={styles.text} key={`education-pdf-${index}`}>
+            <Text style={{ fontFamily: "Roboto-Bold" }}>
               {education.titleOfStudy}
               {"\n"}
             </Text>
