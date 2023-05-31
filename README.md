@@ -42,7 +42,7 @@ The final future improvement I can see implementing is input validation and form
 [React-pdf](https://react-pdf.org/)<br>
 [Styled-components](https://styled-components.com/)
 
-# Instal and run
+# Install and run
 
 git clone git@github.com:roamingterra/cv-project.git<br>
 cd cv-project<br>
